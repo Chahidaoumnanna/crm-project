@@ -1,4 +1,49 @@
-<!doctype html>
+{{--<!doctype html>--}}
+{{--<html lang="en">--}}
+{{--<head>--}}
+{{--    <meta charset="UTF-8">--}}
+{{--    <meta name="viewport"--}}
+{{--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
+{{--    <meta http-equiv="X-UA-Compatible" content="ie=edge">--}}
+{{--    <title>@yield('title')</title>--}}
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+{{--</head>--}}
+{{--<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">--}}
+{{--    <!--begin::App Wrapper-->--}}
+{{--    <div class="app-wrapper">--}}
+{{--        @include('partials.header')--}}
+{{--        @include('partials.sidebar')--}}
+{{--        <!--begin::App Main-->--}}
+{{--        <main class="app-main">--}}
+{{--            <!--begin::App Content Header-->--}}
+{{--            <div class="app-content-header">--}}
+{{--                <!--begin::Container-->--}}
+{{--                <div class="container-fluid">--}}
+{{--                    <!--begin::Row-->--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-sm-6"><h3 class="mb-0">@yield('bodyTitle', 'Admin')</h3></div>--}}
+{{--                    </div>--}}
+{{--                    <!--end::Row-->--}}
+{{--                </div>--}}
+{{--                <!--end::Container-->--}}
+{{--            </div>--}}
+{{--            <!--end::App Content Header-->--}}
+{{--            <!--begin::App Content-->--}}
+{{--            <div class="app-content">--}}
+{{--                <!--begin::Container-->--}}
+{{--                <div class="container-fluid">--}}
+{{--                    @yield('body')--}}
+{{--                </div>--}}
+{{--                <!--end::Container-->--}}
+{{--            </div>--}}
+{{--            <!--end::App Content-->--}}
+{{--        </main>--}}
+{{--        <!--end::App Main-->--}}
+{{--        @include('partials.footer')--}}
+{{--    </div>--}}
+{{--</body>--}}
+{{--</html>--}}
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,40 +51,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/react/index.jsx'])
 </head>
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-    <!--begin::App Wrapper-->
-    <div class="app-wrapper">
-        @include('partials.header')
-        @include('partials.sidebar')
-        <!--begin::App Main-->
-        <main class="app-main">
-            <!--begin::App Content Header-->
-            <div class="app-content-header">
-                <!--begin::Container-->
-                <div class="container-fluid">
-                    <!--begin::Row-->
-                    <div class="row">
-                        <div class="col-sm-6"><h3 class="mb-0">@yield('bodyTitle', 'Admin')</h3></div>
-                    </div>
-                    <!--end::Row-->
+<div class="app-wrapper">
+    @include('partials.header')
+    @include('partials.sidebar')
+    <main class="app-main">
+        <div class="app-content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6"><h3 class="mb-0">@yield('bodyTitle', 'Admin')</h3></div>
                 </div>
-                <!--end::Container-->
             </div>
-            <!--end::App Content Header-->
-            <!--begin::App Content-->
-            <div class="app-content">
-                <!--begin::Container-->
-                <div class="container-fluid">
-                    @yield('body')
-                </div>
-                <!--end::Container-->
+        </div>
+        <div class="app-content">
+            <div class="container-fluid">
+                @yield('body')
             </div>
-            <!--end::App Content-->
-        </main>
-        <!--end::App Main-->
-        @include('partials.footer')
-    </div>
+        </div>
+    </main>
+    @include('partials.footer')
+</div>
+
+<!-- Conteneur React -->
+<div id="react-root"></div>
 </body>
 </html>

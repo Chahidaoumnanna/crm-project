@@ -35,9 +35,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class='nav-link' href='{{ route('home') }}'>
+                    <a class='nav-link' href='{{ route('clients.index') }}'>
                         <i class="nav-icon bi bi-person"></i>
                         <p>Client</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link' href='{{ route('produits.index') }}'>
+                        <i class="nav-icon bi bi-person"></i>
+                        <p>Produits</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link' href='{{ route('bonlivraison.index') }}'>
+                        <i class="nav-icon bi bi-person"></i>
+                        <p>Bon de livraison</p>
                     </a>
                 </li>
                 {{--<li class="nav-item">
