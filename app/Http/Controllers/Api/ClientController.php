@@ -1,21 +1,27 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('client.index',[
-            'clients' => Client::all()
-        ]);
+        $clients = Client::all();
+
+        if ($request->wantsJson()) {
+            return response()->json($clients);
+        }
+
+        return view('client.index', compact('clients'));
     }
 
     /**
@@ -32,8 +38,11 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $validatedData = $request->validated();
+        $client = Client::create($validatedData);
 
-        Client::create($validatedData);
+        if ($request->wantsJson()) {
+            return response()->json($client, 201);
+        }
 
         return redirect()->route('clients.index');
     }
@@ -41,9 +50,13 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show(Request $request, Client $client)
     {
-        //
+        if ($request->wantsJson()) {
+            return response()->json($client);
+        }
+
+        return view('client.show', compact('client'));
     }
 
     /**
@@ -51,7 +64,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.edit', compact('client'));
     }
 
     /**
@@ -59,14 +72,27 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        //
+        $validatedData = $request->validated();
+        $client->update($validatedData);
+
+        if ($request->wantsJson()) {
+            return response()->json($client);
+        }
+
+        return redirect()->route('clients.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client)
+    public function destroy(Request $request, Client $client)
     {
-        //
+        $client->delete();
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Client deleted successfully']);
+        }
+
+        return redirect()->route('clients.index');
     }
 }

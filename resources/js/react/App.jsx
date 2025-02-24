@@ -1,10 +1,11 @@
 import React from "react";
-import BonDeLivraison from "./components/BonDeLivraison.jsx";
-
+import Produits from "@/react/components/produits/Produits.jsx";
+import Informations from "@/react/components/clients/Informations.jsx";
 export default function App() {
     return (
         <div>
-            <BonDeLivraison />
+            <Informations/>
+            <Produits />
         </div>
     );
 }

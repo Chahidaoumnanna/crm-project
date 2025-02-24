@@ -75,6 +75,6 @@
 </div>
 
 <!-- Conteneur React -->
-<div id="react-root"></div>
+{{--<div id="react-root"></div>--}}
 </body>
 </html>
