@@ -5,124 +5,221 @@
 
 @section('body')
     <!-- Small Box (Stat card) -->
-    <h5 class="mb-2">Small Box</h5>
     <!-- Small boxes (Stat box) -->
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box text-bg-primary">
-                <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+            <div class="card card-stats mb-4 mb-lg-0">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">TOTAL DES VENTES</h5>
+                            <span class="h2 font-weight-bold mb-0" style="white-space: nowrap;">77 877,10 DH</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                <i class="bi bi-cart-fill"></i> <!-- Icône de panier de Bootstrap Icons -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                        <a href="#" class="text-primary text-decoration-none">
+                            Plus d'informations <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </p>
                 </div>
-                <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-                    ></path>
-                </svg>
-                <a
-                    href="#"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                >
-                    More info <i class="bi bi-link-45deg"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box text-bg-success">
-                <div class="inner">
-                    <h3>53<sup class="fs-5">%</sup></h3>
-                    <p>Bounce Rate</p>
+            <div class="card card-stats mb-4 mb-lg-0">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">TOTAL DU BÉNÉFICE</h5>
+                            <span class="h2 font-weight-bold mb-0" style="white-space: nowrap;">18 258,94 DH</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                                <i class="bi bi-graph-up"></i> <!-- Icône de bénéfice de Bootstrap Icons -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                        <a href="#" class="text-primary text-decoration-none">
+                            Plus d'informations <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </p>
                 </div>
-                <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"
-                    ></path>
-                </svg>
-                <a
-                    href="#"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                >
-                    More info <i class="bi bi-link-45deg"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box text-bg-warning">
-                <div class="inner">
-                    <h3>44</h3>
-                    <p>User Registrations</p>
+            <div class="card card-stats mb-4 mb-lg-0">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">TOTAL DU STOCK</h5>
+                            <span class="h2 font-weight-bold mb-0" style="white-space: nowrap;">247 723,44 DH</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                <i class="bi bi-box-seam"></i> <!-- Icône de stock de Bootstrap Icons -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                        <a href="#" class="text-primary text-decoration-none">
+                            Plus d'informations <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </p>
                 </div>
-                <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"
-                    ></path>
-                </svg>
-                <a
-                    href="#"
-                    class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
-                >
-                    More info <i class="bi bi-link-45deg"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box text-bg-danger">
-                <div class="inner">
-                    <h3>65</h3>
-                    <p>Unique Visitors</p>
+            <div class="card card-stats mb-4 mb-lg-0">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">TOTAL CRÉDIT CLIENTS</h5>
+                            <span class="h2 font-weight-bold mb-0" style="white-space: nowrap;">-19 227,70 DH</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                <i class="bi bi-credit-card"></i> <!-- Icône de crédit de Bootstrap Icons -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                        <a href="#" class="text-primary text-decoration-none">
+                            Plus d'informations <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </p>
                 </div>
-                <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z"
-                    ></path>
-                    <path
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
-                    ></path>
-                </svg>
-                <a
-                    href="#"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                >
-                    More info <i class="bi bi-link-45deg"></i>
-                </a>
             </div>
         </div>
         <!-- ./col -->
     </div>
+
+    
     <!-- /.row -->
+     <!-- /.start Statistiques -->
+    <div class="row mt-5">
+        
+    <div class="card mb-3">
+  <div class="card-body p-3">
+    <div class="chart">
+      <canvas id="mixed-chart" class="chart-canvas" height="300"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('mixed-chart').getContext('2d');
+        const mixedChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai'],
+                datasets: [{
+                    label: 'Ventes',
+                    data: [65, 59, 80, 81, 56],
+                    backgroundColor: 'rgba(100, 181, 246, 0.8)', // Bleu clair plus opaque
+                    borderColor: 'rgba(100, 181, 246, 1)', // Bleu clair
+                    borderWidth: 1,
+                    borderRadius: 8, // Bords arrondis plus prononcés
+                    barThickness: 30, // Largeur des barres (taille moyenne)
+                }, {
+                    label: 'Factures',
+                    data: [28, 48, 40, 19, 86],
+                    type: 'line', // Graphique en ligne
+                    borderColor: 'rgba(255, 152, 0, 1)', // Orange clair
+                    borderWidth: 3, // Ligne plus épaisse
+                    fill: false,
+                    tension: 0.4, // Courbure de la ligne
+                    pointRadius: 5, // Taille des points
+                    pointBackgroundColor: 'rgba(255, 152, 0, 1)', // Couleur des points
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top', // Légende en haut
+                        labels: {
+                            color: '#333', // Couleur du texte de la légende
+                            font: {
+                                size: 14, // Taille de la police de la légende
+                                weight: 'bold', // Texte en gras
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)', // Fond des tooltips plus sombre
+                        titleColor: '#fff', // Couleur du titre des tooltips
+                        bodyColor: '#fff', // Couleur du texte des tooltips
+                        titleFont: {
+                            size: 14, // Taille de la police du titre des tooltips
+                        },
+                        bodyFont: {
+                            size: 12, // Taille de la police du texte des tooltips
+                        },
+                        padding: 10, // Espacement interne des tooltips
+                        cornerRadius: 5, // Coins arrondis des tooltips
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false, // Masquer la grille de l'axe X
+                        },
+                        ticks: {
+                            color: '#666', // Couleur des ticks de l'axe X
+                            font: {
+                                size: 12, // Taille de la police des ticks de l'axe X
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)', // Couleur de la grille de l'axe Y
+                        },
+                        ticks: {
+                            color: '#666', // Couleur des ticks de l'axe Y
+                            font: {
+                                size: 12, // Taille de la police des ticks de l'axe Y
+                            },
+                            stepSize: 20, // Intervalle des ticks de l'axe Y
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1000, // Durée de l'animation
+                    easing: 'easeInOutQuart', // Effet d'animation fluide
+                }
+            }
+        });
+    });
+</script>
+</div>
+
+
+
+
+
+
+
+
+
+
+    
+    
 @endsection
+
