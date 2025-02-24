@@ -13,16 +13,32 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
+//    public function index(Request $request)
+//    {
+//        $clients = Client::all();
+//
+//        if ($request->wantsJson()) {
+//            return response()->json($clients);
+//        }
+//
+//        return view('client.index', compact('clients'));
+//    }
+
     public function index(Request $request)
     {
-        $clients = Client::all();
+        $search = $request->query('search');
 
-        if ($request->wantsJson()) {
-            return response()->json($clients);
-        }
+        // Filtrer les clients en fonction de la recherche avec pagination
+        $clients = Client::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('code', 'like', '%' . $search . '%');
+        })->paginate(10); // Utilisation correcte de paginate()
 
-        return view('client.index', compact('clients'));
-    }
+        // Passer les clients filtrés à la vue
+        return view('client.index', [
+            'clients' => $clients
+        ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -96,3 +112,5 @@ class ClientController extends Controller
         return redirect()->route('clients.index');
     }
 }
+
+

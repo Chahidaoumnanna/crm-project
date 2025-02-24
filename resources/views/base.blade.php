@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/js/app.js'])
+    @yield('react')
 </head>
 <body class="layout-fixed sidebar-expand-lg">
     <!--begin::App Wrapper-->
@@ -42,6 +43,7 @@
         <!--end::App Main-->
         @include('partials.footer')
     </div>
-    <script src="{{ asset('js/theme.js') }}"></script>
+{{--    <div id="react-root"></div>--}}
+{{--    <script src="{{ asset('js/theme.js') }}"></script>--}}
 </body>
 </html>
