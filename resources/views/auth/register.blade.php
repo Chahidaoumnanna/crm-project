@@ -19,7 +19,7 @@
                 <label for="name" class="form-label fw-semibold">Nom</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" 
+                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
                            placeholder="Votre nom" value="{{ old('name') }}" required>
                 </div>
                 @error('name')
@@ -32,7 +32,7 @@
                 <label for="email" class="form-label fw-semibold">Email</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" 
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
                            placeholder="Votre email" value="{{ old('email') }}" required>
                 </div>
                 @error('email')
@@ -102,4 +102,3 @@
 </script>
 
 @endsection
-s

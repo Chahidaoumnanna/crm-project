@@ -6,7 +6,6 @@
     <title>@yield('title', 'Login')</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> --}}
     <style>
         .invalid-feedback {
             font-size: 14px;

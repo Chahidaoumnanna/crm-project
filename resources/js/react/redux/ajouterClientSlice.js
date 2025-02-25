@@ -1,4 +1,3 @@
-// import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import axios from "axios";
 //
 // // Fonction asynchrone pour récupérer les groupes clients

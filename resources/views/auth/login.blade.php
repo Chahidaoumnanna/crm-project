@@ -27,7 +27,7 @@
                 <label for="email" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" 
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
                            placeholder="Votre email" value="{{ old('email') }}" required>
                 </div>
                 @error('email')
@@ -65,15 +65,15 @@
         </form>
 
         <!-- Ou se connecter avec -->
-        <div class="text-center my-3">
-            <span class="text-muted">ou</span>
-        </div>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="#" class="btn btn-outline-danger"><i class="bi bi-google"></i></a>
-            <a href="#" class="btn btn-outline-primary"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-info"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="btn btn-outline-secondary"><i class="bi bi-linkedin"></i></a>
-        </div>
+{{--        <div class="text-center my-3">--}}
+{{--            <span class="text-muted">ou</span>--}}
+{{--        </div>--}}
+{{--        <div class="d-flex justify-content-center gap-3">--}}
+{{--            <a href="#" class="btn btn-outline-danger"><i class="bi bi-google"></i></a>--}}
+{{--            <a href="#" class="btn btn-outline-primary"><i class="bi bi-facebook"></i></a>--}}
+{{--            <a href="#" class="btn btn-outline-info"><i class="bi bi-twitter"></i></a>--}}
+{{--            <a href="#" class="btn btn-outline-secondary"><i class="bi bi-linkedin"></i></a>--}}
+{{--        </div>--}}
     </div>
 </div>
 

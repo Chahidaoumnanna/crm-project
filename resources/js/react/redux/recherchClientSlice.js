@@ -1,4 +1,3 @@
-// import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import axios from "axios";
 //
 // // Action asynchrone pour récupérer les clients depuis l'API
@@ -82,9 +81,9 @@ export const fetchClients = createAsyncThunk(
     async ({ search }, { rejectWithValue }) => { // Ajout du paramètre de recherche
         try {
             const response = await axios.get(`http://127.0.0.1:8000/api/clients`, {
-                params: { search } 
+                params: { search }
             });
-            return response.data; 
+            return response.data;
         } catch (error) {
             console.error("Erreur lors de la récupération des clients:", error);
             return rejectWithValue(error.response?.data || "Erreur inconnue");

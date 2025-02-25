@@ -1,4 +1,3 @@
-// import React, { useEffect } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import Select from "react-select";
 // import { useDispatch, useSelector } from "react-redux";
@@ -81,7 +80,7 @@ import { clearLastAddedClient } from '../../redux/ajouterClientSlice.js';
 
 const RecherchClient = () => {
     const dispatch = useDispatch();
-    
+
     // Sélecteurs pour accéder aux données du store
     const clients = useSelector((state) => state.rechercheClient?.clients || []);
     const loading = useSelector((state) => state.rechercheClient?.loading || false);

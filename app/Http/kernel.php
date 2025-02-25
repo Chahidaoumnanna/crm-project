@@ -5,3 +5,4 @@ protected $middlewareGroups = [
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ],
 ];
+<!--kernel-->

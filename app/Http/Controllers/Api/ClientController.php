@@ -43,7 +43,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $validatedData = $request->validated();
-        
+
         $client = Client::create($validatedData);
 
         return redirect()->route('clients.index')->with('success', 'Client créé avec succès !');
@@ -126,7 +126,7 @@ class ClientController extends Controller
             'address' => 'nullable|string|max:255',
             'type' => 'required|string|max:255',
         ]);
-    
+
         // Création d'un nouveau client
         $client = Client::create([
             'name' => $validatedData['name'],
@@ -136,8 +136,7 @@ class ClientController extends Controller
             'address' => $validatedData['address'],
             'type' => $validatedData['type'],
         ]);
-    
-        // Retourner la réponse avec le client créé
-        return response()->json($client, 201); 
+
+        return response()->json($client, 201);
     }
 }
