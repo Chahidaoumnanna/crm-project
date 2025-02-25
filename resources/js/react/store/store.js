@@ -1,3 +1,50 @@
+//
+// import { configureStore } from "@reduxjs/toolkit";
+// import informationSlice from "@/react/redux/informationSlice.js";
+// import recherchClientSlice from "@/react/redux/recherchClientSlice.js";
+// import ajouterClientSlice from "@/react/redux/ajouterClientSlice.js";
+// import activationTvaRemiseSlice from "@/react/redux/activationTvaRemiseSlice.js";
+// import crudActionSlice from "@/react/redux/crudActionSlice.js";
+// import paiementSlice from "@/react/redux/paiementSlice.js";
+//
+// // Create the Redux store
+// const store = configureStore({
+//     reducer: {
+//         formInfo: informationSlice,
+//         rechercheClient: recherchClientSlice,
+//         addUser: ajouterClientSlice,
+//         activation: activationTvaRemiseSlice,
+//         products: crudActionSlice,
+//         payments: paiementSlice,
+//     }
+// });
+//
+// export default store;
+
+
+// import { configureStore } from "@reduxjs/toolkit";
+// import informationSlice from '../redux/informationSlice.js';
+// import recherchClientSlice from '../redux/recherchClientSlice.js';
+// import ajouterClientSlice from '../redux/ajouterClientSlice.js';
+// import activationTvaRemiseSlice from '../redux/activationTvaRemiseSlice.js';
+// import crudActionSlice from '../redux/crudActionSlice.js';
+// import paiementSlice from '../redux/paiementSlice.js';
+//
+// // Create the Redux store
+// const store = configureStore({
+//     reducer: {
+//         formInfo: informationSlice,
+//         recherchClientSlice : recherchClientSlice,
+//         addUser: ajouterClientSlice,
+//         activation: activationTvaRemiseSlice,
+//         products: crudActionSlice,
+//         payments: paiementSlice,
+//     }
+// });
+//
+// export default store;
+//
+
 // import { configureStore } from "@reduxjs/toolkit";
 // import formInfoSlice from '../redux/formInfoSlice';
 // import rechercheClientSlice from '../redux/recherchClientSlice';
@@ -18,12 +65,12 @@
 //
 // export default store;
 import { configureStore } from "@reduxjs/toolkit";
-import informationSlice from "@/react/redux/informationSlice.js";
-import recherchClientSlice from "@/react/redux/recherchClientSlice.js";
-import ajouterClientSlice from "@/react/redux/ajouterClientSlice.js";
-import activationTvaRemiseSlice from "@/react/redux/activationTvaRemiseSlice.js";
-import crudActionSlice from "@/react/redux/crudActionSlice.js";
-import paiementSlice from "@/react/redux/paiementSlice.js";
+import informationSlice from '../redux/informationSlice.js';
+import recherchClientSlice from '../redux/recherchClientSlice.js';
+import ajouterClientSlice from '../redux/ajouterClientSlice.js';
+import activationTvaRemiseSlice from '../redux/activationTvaRemiseSlice.js';
+import crudActionSlice from '../redux/crudActionSlice.js';
+import paiementSlice from "../redux/paiementSlice.js";
 
 // Create the Redux store
 const store = configureStore({

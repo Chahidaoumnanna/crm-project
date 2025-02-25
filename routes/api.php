@@ -17,5 +17,5 @@ Route::get('/bon-de-livraison', [BonLivraisonController::class, 'index'])->name(
 Route::post('/bonlivraisons', [BonLivraisonController::class, 'store']);
 
 
-Route::resource('clients',ClientController::class);
+Route::apiResource('clients',ClientController::class);
 Route::resource('produits',ProduitController::class);

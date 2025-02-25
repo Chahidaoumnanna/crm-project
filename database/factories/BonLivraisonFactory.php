@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\BonLivraison;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +11,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BonLivraisonFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = BonLivraison::class;
+
+    public function definition()
     {
         return [
-            //
+            'ref' => $this->faker->unique()->bothify('BL-####'),
+            'idClient' => Client::inRandomOrder()->first()->id ?? Client::factory(),
+            'docAt' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'totale' => $this->faker->randomFloat(2, 100, 5000),
         ];
     }
 }

@@ -122,4 +122,15 @@ class ProduitController extends Controller
         // Redirige vers la liste des produits sans message
         return redirect()->route('produits.index');
     }
+    public function apiProduits(Request $request){
+        $search = $request->get('search');
+        $produit = Produit::all();
+        if ($search) {
+            $produit = Produit::where('name', 'like', '%' . $search . '%')
+                ->orwhere('codeBar', 'like', '%' . $search . '%')
+                ->get();
+        }
+        return response()->json($produit);
+        }
+
 }
