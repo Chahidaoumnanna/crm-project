@@ -330,8 +330,19 @@ export default function AjouterClient() {
             address: "",
         },
         validationSchema,
-        onSubmit: (values) => {
-            dispatch(addClient(values));
+        // onSubmit: (values) => {
+        //     dispatch(addClient(values));
+        // },
+
+        onSubmit: async (values, { setSubmitting }) => {
+            try {
+                await dispatch(addClient(values)).unwrap();
+                dispatch(setShowAddUser(false));
+            } catch (error) {
+                console.error("Erreur d'enregistrement:", error);
+            } finally {
+                setSubmitting(false);
+            }
         },
     });
 

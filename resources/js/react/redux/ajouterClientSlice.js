@@ -152,6 +152,23 @@ const addUserSlice = createSlice({
             state.lastAddedClient = null;
         },
     },
+    // extraReducers: (builder) => {
+    //     builder
+    //         .addCase(addClient.pending, (state) => {
+    //             state.addClientLoading = true;
+    //             state.addClientError = null;
+    //         })
+    //         .addCase(addClient.fulfilled, (state, action) => {
+    //             state.addClientLoading = false;
+    //             state.lastAddedClient = action.payload;
+    //         })
+    //         .addCase(addClient.rejected, (state, action) => {
+    //             state.addClientLoading = false;
+    //             state.addClientError = action.payload;
+    //         });
+    // },
+
+
     extraReducers: (builder) => {
         builder
             .addCase(addClient.pending, (state) => {
@@ -164,9 +181,9 @@ const addUserSlice = createSlice({
             })
             .addCase(addClient.rejected, (state, action) => {
                 state.addClientLoading = false;
-                state.addClientError = action.payload;
+                state.addClientError = action.payload?.error || "Erreur serveur";
             });
-    },
+    }
 });
 
 export const { clearLastAddedClient } = addUserSlice.actions;
