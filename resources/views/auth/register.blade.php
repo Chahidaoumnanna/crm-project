@@ -7,6 +7,10 @@
             <h4 class="fw-bold">Créer un compte</h4>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success text-center">{{ session('success') }}</div>
+        @endif
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -14,42 +18,61 @@
             <div class="mb-3">
                 <label for="name" class="form-label fw-semibold">Nom</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required>
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" 
+                           placeholder="Votre nom" value="{{ old('name') }}" required>
                 </div>
+                @error('name')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Champ Email -->
             <div class="mb-3">
                 <label for="email" class="form-label fw-semibold">Email</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Votre email" required>
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" 
+                           placeholder="Votre email" value="{{ old('email') }}" required>
                 </div>
+                @error('email')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Champ Mot de passe -->
             <div class="mb-3">
                 <label for="password" class="form-label fw-semibold">Mot de passe</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                           placeholder="Votre mot de passe" required>
+                    <span class="input-group-text toggle-password" onclick="togglePassword()">
+                        <i class="bi bi-eye"></i>
+                    </span>
                 </div>
+                @error('password')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Champ Confirmation du mot de passe -->
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label fw-semibold">Confirmer le mot de passe</label>
                 <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-check"></i></span>
-                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirmez votre mot de passe" required>
+                    <span class="input-group-text"><i class="bi bi-check-lg"></i></span>
+                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror"
+                           placeholder="Confirmez votre mot de passe" required>
                 </div>
+                @error('password_confirmation')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Bouton S'inscrire -->
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i> S'inscrire
+                    <i class="bi bi-person-plus"></i> S'inscrire
                 </button>
             </div>
         </form>
@@ -61,9 +84,22 @@
     </div>
 </div>
 
-<!-- Inclure Bootstrap & FontAwesome -->
-@push('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-@endpush
+<!-- Script pour afficher/masquer le mot de passe -->
+<script>
+    function togglePassword() {
+        let passwordField = document.getElementById('password');
+        let icon = document.querySelector('.toggle-password i');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    }
+</script>
+
 @endsection
+s
