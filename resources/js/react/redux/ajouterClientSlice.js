@@ -169,5 +169,5 @@ const addUserSlice = createSlice({
     }
 });
 
-export const { clearLastAddedClient } = addUserSlice.actions;   
-export default addUserSlice.reducer;   
+export const { clearLastAddedClient } = addUserSlice.actions;
+export default addUserSlice.reducer;

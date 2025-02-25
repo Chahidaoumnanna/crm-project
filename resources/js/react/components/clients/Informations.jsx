@@ -216,8 +216,12 @@ export default function Informations() {
                             <Form.Label>Client</Form.Label>
                             <InputGroup className="d-flex">
                                 <div className="flex-grow-1">
+                                    {/*<RecherchClient*/}
+                                    {/*    value={formik.values.name}*/}
+                                    {/*    onChange={(value) => formik.setFieldValue("name", value)}*/}
+                                    {/*/>*/}
+                                    // Dans la partie RecherchClient
                                     <RecherchClient
-                                        value={formik.values.name}
                                         onChange={(value) => formik.setFieldValue("name", value)}
                                     />
                                 </div>
