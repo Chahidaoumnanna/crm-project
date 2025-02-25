@@ -20,6 +20,15 @@
 
         <form action="{{ route('clients.store') }}" method="post">
             @csrf
+            <div class="mb-3>
+                <div class="input-group input-group-outline my-3">
+                    <input type="text" class="form-control" id="code" name="code" value="{{ old('code') }}">
+                    <label class="form-label">Code</label>
+                    @error('code')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group input-group-outline my-3">

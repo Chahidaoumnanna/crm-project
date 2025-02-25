@@ -7,11 +7,11 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateClientRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the user is aut horized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'code' => 'required|string|max:255|unique:clients',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'type' => 'required|string|max:255',
         ];
     }
 }
+
+

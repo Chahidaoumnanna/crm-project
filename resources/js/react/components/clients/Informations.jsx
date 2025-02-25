@@ -176,6 +176,7 @@ export default function Informations() {
     const { nlivraison, date, observation, showAddUser } = useSelector(
         (state) => state.formInfo
     );
+    // const lastAddedClient = useSelector((state) => state.addUser.lastAddedClient);
 
     const formattedDate = date ? dayjs(date).format("YYYY-MM-DDTHH:mm") : "";
 

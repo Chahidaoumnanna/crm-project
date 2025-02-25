@@ -72,8 +72,6 @@
 // };
 //
 // export default RecherchClient;
-
-
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
@@ -83,23 +81,27 @@ import { clearLastAddedClient } from '../../redux/ajouterClientSlice.js';
 
 const RecherchClient = () => {
     const dispatch = useDispatch();
+    
+    // Sélecteurs pour accéder aux données du store
+    const clients = useSelector((state) => state.rechercheClient?.clients || []);
+    const loading = useSelector((state) => state.rechercheClient?.loading || false);
+    const selectedClient = useSelector((state) => state.rechercheClient?.selectedClient || null);
+    const lastAddedClient = useSelector((state) => state.addUser?.lastAddedClient || null);
 
-    const clients = useSelector((state) => state.rechercheClient.clients);
-    const loading = useSelector((state) => state.rechercheClient.loading);
-    const selectedClient = useSelector((state) => state.rechercheClient.selectedClient);
-    const lastAddedClient = useSelector((state) => state.addUser.lastAddedClient);
-
+    // Gérer le changement d'entrée dans le champ de recherche
     const handleInputChange = (inputValue) => {
         dispatch(setSearchTerm(inputValue));
         if (inputValue.length > 0) {
-            dispatch(fetchClients({ termeRecherche: inputValue, phoneRecherche: "", refRecherche: "" }));
+            dispatch(fetchClients({ search: inputValue })); // Correction : Envoi du searchTerm
         }
     };
 
+    // Gérer la sélection d'un client
     const handleSelectClient = (selectedOption) => {
         dispatch(setSelectedClient(selectedOption ? selectedOption.clientData : null));
     };
 
+    // Utiliser le dernier client ajouté pour pré-remplir le sélecteur
     useEffect(() => {
         if (lastAddedClient) {
             dispatch(setSelectedClient(lastAddedClient));
@@ -107,8 +109,14 @@ const RecherchClient = () => {
         }
     }, [lastAddedClient, dispatch]);
 
-    const options = clients;
+    // Préparer les options pour le composant Select
+    const options = clients.map(client => ({
+        value: client.id,
+        label: client.name || "Nom inconnu",
+        clientData: client
+    }));
 
+    // Valeur sélectionnée pour le sélecteur
     const selectValue =
         selectedClient && selectedClient.id
             ? { value: selectedClient.id, label: selectedClient.name || "Nom inconnu" }
@@ -122,13 +130,11 @@ const RecherchClient = () => {
                 options={options}
                 isLoading={loading}
                 placeholder="Rechercher un client..."
-                onInputChange={handleInputChange}
-                onChange={handleSelectClient}
+                onInputChange={handleInputChange} // Gérer le changement d'entrée
+                onChange={handleSelectClient} // Gérer la sélection
                 isClearable
-                value={selectValue}
+                value={selectValue} // Valeur actuelle du sélecteur
             />
-
-
         </div>
     );
 };

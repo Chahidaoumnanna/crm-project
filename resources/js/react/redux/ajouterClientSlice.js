@@ -130,7 +130,7 @@ export const addClient = createAsyncThunk(
     "addClient/addClient",
     async (clientData, thunkAPI) => {
         try {
-            const response = await axios.post("http://127.0.0.1:8000/clients", clientData);
+            const response = await axios.post("http://127.0.0.1:8000/api/clients", clientData); // Remplacement de l'URL
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data || "Une erreur est survenue");
@@ -164,10 +164,10 @@ const addUserSlice = createSlice({
             })
             .addCase(addClient.rejected, (state, action) => {
                 state.addClientLoading = false;
-                state.addClientError = action.payload;
+                state.addClientError = action.payload || "Erreur serveur";
             });
-    },
+    }
 });
 
-export const { clearLastAddedClient } = addUserSlice.actions;
-export default addUserSlice.reducer;
+export const { clearLastAddedClient } = addUserSlice.actions;   
+export default addUserSlice.reducer;   

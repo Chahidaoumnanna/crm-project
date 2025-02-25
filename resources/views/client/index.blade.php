@@ -5,6 +5,16 @@
 @section('bodyTitle','Clients')
 
 @section('body')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <div class="card mb-4">
         <div class="card-header">
             <h3 class="card-title">Clients</h3>
@@ -29,7 +39,7 @@
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Code</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nom</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Addresse</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
@@ -46,26 +56,26 @@
                         <td>{{ $client->address }}</td>
                         <td>{{ $client->type }}</td>
                         <td>
-                            <a href="{{ route('clients.edit', $client->id) }}" class="btn-sm"><i class="fas fa-edit"></i</a>
+                            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="d-inline">
-                                @method('DELETE')
                                 @csrf
-                                <button type="submit" btn btn-danger btn-sm><i class="fas fa-trash-alt"></i></button>
-                         </form>
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');"><i class="fas fa-trash-alt"></i></button>
+                            </form>
                         </td>
 
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            <!-- Inclure Font Awesome (si ce n'est pas déjà fait) -->
+            <!-- Inclure Font Awesome (si ce n'est pas déjà fait) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- Pagination personnalisée -->
+<!-- Pagination personnalisée -->
 <div class="d-flex justify-content-center mt-4">
     <nav aria-label="Page navigation">
         <ul class="pagination pagination-sm">
-            <!-- Bouton "Précédent" -->
+            <!-- Bouton "Précédent" -->
             <li class="page-item {{ $clients->onFirstPage() ? 'disabled' : '' }}">
                 <a class="page-link" href="{{ $clients->previousPageUrl() }}" aria-label="Previous">
                     <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
@@ -92,4 +102,4 @@
         </div>
     </div>
 
-            @endsection
+      @endsection

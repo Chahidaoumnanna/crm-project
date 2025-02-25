@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index');
-Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
 
 
@@ -16,6 +15,4 @@ Route::get('/clients', [ClientController::class, 'index'])->name('clients.index'
 Route::get('/bon-de-livraison', [BonLivraisonController::class, 'index'])->name('bonlivraison.index');
 Route::post('/bonlivraisons', [BonLivraisonController::class, 'store']);
 
-
-Route::resource('clients',ClientController::class);
 Route::resource('produits',ProduitController::class);

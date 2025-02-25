@@ -330,10 +330,22 @@ export default function AjouterClient() {
             address: "",
         },
         validationSchema,
-        onSubmit: (values) => {
-            dispatch(addClient(values));
+        // onSubmit: (values) => {
+        //     dispatch(addClient(values));
+        // },
+
+        onSubmit: async (values, { setSubmitting }) => {
+            try {
+                await dispatch(addClient(values)).unwrap();
+                dispatch(setShowAddUser(false));
+            } catch (error) {
+                console.error("Erreur d'enregistrement:", error);
+            } finally {
+                setSubmitting(false);
+            }
         },
     });
+
 
     return (
         <Container className="d-flex justify-content-center align-items-center vh-80">
@@ -362,7 +374,7 @@ export default function AjouterClient() {
                 <Row className="mb-3">
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Référence</Form.Label>
+                            <Form.Label>Référence</Form.Label>
                             <Form.Control
                                 id="code"
                                 type="text"
@@ -397,7 +409,7 @@ export default function AjouterClient() {
                 <Row className="mb-3">
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Téléphone</Form.Label>
+                            <Form.Label>Téléphone</Form.Label>
                             <Form.Control
                                 id="phone"
                                 type="tel"
@@ -458,5 +470,5 @@ export default function AjouterClient() {
                 </div>
             </Form>
         </Container>
-    );
+);
 }
