@@ -5,4 +5,9 @@ protected $middlewareGroups = [
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ],
 ];
+
+<!--protected $routeMiddleware = [-->
+<!--'auth' => \App\Http\Middleware\Authenticate::class,-->
+<!--// autres middlewares...-->
+<!--];-->
 <!--kernel-->

@@ -13,11 +13,7 @@
                     data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1"
                     aria-selected="true">Home</a>
             </li>
-            <li class="nav-item d-none d-md-block">
-                <a class="nav-link mb-sm-3 mb-md-0 btn btn-outline-primary rounded-pill" id="tabs-text-2-tab"
-                    data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2"
-                    aria-selected="false">Contact</a>
-            </li>
+
         </ul>
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->

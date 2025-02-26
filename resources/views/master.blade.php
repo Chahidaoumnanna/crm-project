@@ -13,18 +13,18 @@
     </style>
 </head>
 <body>
-    <div class="main-wrapper login-body">
-        <div class="login-wrapper">
-            <div class="container">
-                <div class="loginbox">
-                    <div class="login-left">
-                    </div>
-                    <div class="login-right">
-                        @yield('content')
-                    </div>
+<div class="main-wrapper login-body">
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="loginbox">
+                <div class="login-left">
+                </div>
+                <div class="login-right">
+                    @yield('content')
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

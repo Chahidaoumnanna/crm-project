@@ -12,6 +12,8 @@
 </head>
 <body class="layout-fixed sidebar-expand-lg">
     <!--begin::App Wrapper-->
+
+
     <div class="app-wrapper">
         @include('partials.header')
         @include('partials.sidebar')

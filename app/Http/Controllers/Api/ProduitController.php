@@ -15,21 +15,20 @@ class ProduitController extends Controller
         // Récupère le terme de recherche depuis la requête
         $search = $request->query('search');
 
-        // Récupère tous les produits triés par date de création (du plus récent au plus ancien)
+        // Récupère les produits avec pagination
         $produits = Produit::query()
             ->when($search, function ($query, $search) {
-                // Filtre les produits par nom si un terme de recherche est fourni
                 return $query->where('name', 'like', '%' . $search . '%');
             })
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10); // Paginer avec 10 produits par page
 
-        // Vérifie si la requête attend une réponse JSON (par exemple, pour une API)
+        // Vérifie si la requête attend une réponse JSON
         if ($request->wantsJson()) {
             return response()->json($produits);
         }
 
-        // Retourne la vue pour une application web traditionnelle
+        // Retourne la vue avec la pagination
         return view('produits.index', compact('produits'));
     }
 

@@ -30,6 +30,6 @@ class RegisterController extends Controller
         ]);
 
         Auth::guard()->login($user);
-return redirect('/');
+        return redirect('/home');
     }
 }

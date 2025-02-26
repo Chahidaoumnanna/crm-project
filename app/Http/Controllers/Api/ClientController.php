@@ -104,18 +104,23 @@ class ClientController extends Controller
     }
 
 
-    public function apiClients(Request $request){
-        $search = $request->get('search');
-        $clients = Client::all();
-        if ($search) {
-            $clients = Client::where('name', 'like', '%' . $search . '%')
-            ->orWhere('phone', 'like', '%' . $search . '%')
-            ->orWhere('code', 'like', '%' . $search . '%')->get();
+    public function apiClients(Request $request)
+    {
+        $search = $request->input('search');
+        $clients = Client::when($search, function($query) use ($search) {
+            $query->where('code', 'like', "%{$search}%")
+                ->orWhere('name', 'like', "%{$search}%")
+                ->orWhere('phone', 'like', "%{$search}%");
+        })
+            ->orderBy('created_at', 'desc') // Ajout de l'ordre
+            ->paginate(10);
 
-            ;
-        }
+        // Retourne les clients au format JSON
         return response()->json($clients);
     }
+
+
+
     public function apiCreateClient(Request $request) {
         // Validation des données d'entrée
         $validatedData = $request->validate([
