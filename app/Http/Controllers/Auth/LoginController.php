@@ -11,7 +11,6 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login'); // Assurez-vous d'avoir cette vue
         return view('auth.login');
     }
 
@@ -23,7 +22,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('/');
+            return redirect('/home');
             // Redirection après connexion
         }
 

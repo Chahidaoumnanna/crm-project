@@ -28,6 +28,7 @@ class ClientController extends Controller
             'clients' => $clients
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -42,7 +43,6 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $validatedData = $request->validated();
-
 
         $client = Client::create($validatedData);
 
@@ -82,13 +82,13 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateClientRequest $request, Client $client)
-    {
-        // Met à jour le client avec les données validées
-        $client->update($request->validated());
+{
+    // Met à jour le client avec les données validées
+    $client->update($request->validated());
 
-        // Redirige vers la liste des clients avec un message de succès
-        return redirect()->route('clients.index')->with('success', 'Client mis à jour avec succès !');
-    }
+    // Redirige vers la liste des clients avec un message de succès
+    return redirect()->route('clients.index')->with('success', 'Client mis à jour avec succès !');
+}
     /**
      * Remove the specified resource from storage.
      */
@@ -104,18 +104,23 @@ class ClientController extends Controller
     }
 
 
-    public function apiClients(Request $request){
-        $search = $request->get('search');
-        $clients = Client::all();
-        if ($search) {
-            $clients = Client::where('name', 'like', '%' . $search . '%')
-                ->orWhere('phone', 'like', '%' . $search . '%')
-                ->orWhere('code', 'like', '%' . $search . '%')->get();
+    public function apiClients(Request $request)
+    {
+        $search = $request->input('search');
+        $clients = Client::when($search, function($query) use ($search) {
+            $query->where('code', 'like', "%{$search}%")
+                ->orWhere('name', 'like', "%{$search}%")
+                ->orWhere('phone', 'like', "%{$search}%");
+        })
+            ->orderBy('created_at', 'desc') // Ajout de l'ordre
+            ->paginate(10);
 
-            ;
-        }
+        // Retourne les clients au format JSON
         return response()->json($clients);
     }
+
+
+
     public function apiCreateClient(Request $request) {
         // Validation des données d'entrée
         $validatedData = $request->validate([
@@ -127,7 +132,6 @@ class ClientController extends Controller
             'type' => 'required|string|max:255',
         ]);
 
-
         // Création d'un nouveau client
         $client = Client::create([
             'name' => $validatedData['name'],
@@ -137,9 +141,6 @@ class ClientController extends Controller
             'address' => $validatedData['address'],
             'type' => $validatedData['type'],
         ]);
-
-        // Retourner la réponse avec le client créé
-        return response()->json($client, 201);
 
         return response()->json($client, 201);
     }

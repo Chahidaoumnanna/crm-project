@@ -12,7 +12,6 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('auth.register'); // Assurez-vous d'avoir cette vue
         return view('auth.register');
     }
 
@@ -31,6 +30,6 @@ class RegisterController extends Controller
         ]);
 
         Auth::guard()->login($user);
-        return redirect('/');
+        return redirect('/home');
     }
 }

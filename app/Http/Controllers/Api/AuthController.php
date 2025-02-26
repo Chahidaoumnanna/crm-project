@@ -57,7 +57,6 @@ class AuthController extends Controller
         ], 200);
     }
 
-    // Déconnexion
     // logout
     public function logout(Request $request)
     {
