@@ -40,7 +40,7 @@ class BonLivraison extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'idClient');
+        return $this->belongsTo(Client::class, 'idClient'); // Relation vers le modèle Client
     }
 
     public function paiements()
@@ -52,4 +52,23 @@ class BonLivraison extends Model
     {
         return $this->hasMany(BonLivraisonItem::class);
     }
+    public function items()
+    {
+        return $this->hasMany(BonLivraisonItem::class, 'idBonDeLivraison');
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($bonLivraison) {
+            $bonLivraison->totale = $bonLivraison->items()->sum('total');
+        });
+    }
+    public function recalculerTotal()
+    {
+        $this->totale = $this->items()->sum('total');
+        $this->save();
+    }
+
 }
+

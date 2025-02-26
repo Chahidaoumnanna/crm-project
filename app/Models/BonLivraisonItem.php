@@ -31,7 +31,7 @@ class BonLivraisonItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['idProduit', 'idBonDeLivraison', 'qte', 'prixUnitaire'];
+    protected $fillable = ['idProduit', 'idBonDeLivraison', 'qte', 'prixUnitaire' , 'total'];
 
     public function produit()
     {
@@ -42,5 +42,22 @@ class BonLivraisonItem extends Model
     {
         return $this->belongsTo(BonLivraison::class, 'idBonDeLivraison');
     }
-}
+    // Ajouter dans BonLivraisonItem.php
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::saving(function ($item) {
+            $item->total = $item->qte * $item->prixUnitaire;
+        });
+
+        static::saved(function ($item) {
+            $item->bonLivraison->recalculerTotal();
+        });
+
+        static::deleted(function ($item) {
+            $item->bonLivraison->recalculerTotal();
+        });
+    }
+
+}
