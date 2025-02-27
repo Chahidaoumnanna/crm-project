@@ -8,7 +8,6 @@ use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ProduitController;
 use App\Http\Controllers\Api\PaiementController;
 use App\Http\Controllers\Api\BonLivraisonItemController;
-use App\Http\Controllers\Api\PaiementController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -63,7 +62,6 @@ Route::resource('clients', ClientController::class);
 // Routes pour les bons de livraison
 
 
-// Routes pour les paiement
 Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
 Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
 

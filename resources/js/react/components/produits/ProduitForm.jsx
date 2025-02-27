@@ -476,9 +476,11 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
                                                 onInputChange={handleSearchChange}
                                                 onChange={(option) => {
                                                     const selected = names.find((p) => p.id === option.value);
-                                                    setProduct({
-                                                        ...selected,
-                                                        pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
+                                                    setProduct(prevState => {
+                                                        return {
+                                                            ...selected,
+                                                            pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
+                                                        }
                                                     });
                                                     setSelectedProduct(option);
                                                 }}

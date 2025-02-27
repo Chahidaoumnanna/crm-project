@@ -98,6 +98,9 @@
 // export default BonLivraison;
 
 
+
+
+
 import React from "react";
 import {useSelector} from "react-redux";
 import axios from "axios";
@@ -112,6 +115,7 @@ const BonLivraison = () => {
     const handleSaveBonLivraison = async () => {
         console.log(paiements);
         console.log(selectedClient);
+        console.log(listeProducts);
         if (!selectedClient || !selectedClient.name) {
             alert("Sélectionnez un client avant d'enregistrer !");
             return;
