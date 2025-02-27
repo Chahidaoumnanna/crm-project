@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     payments: [],
+
+
 };
 
 const paymentSlice = createSlice({
@@ -17,6 +19,9 @@ const paymentSlice = createSlice({
             }
             state.payments.push(newPayment);
         },
+
+
+
         editPayment: (state, action) => {
             const { index, payment } = action.payload;
             const previousPayment = state.payments[index];
@@ -57,6 +62,12 @@ const paymentSlice = createSlice({
 
 // Export actions
 export const { addPayment, editPayment, deletePayment } = paymentSlice.actions;
+
+export const updateTotalPrice = (amount) => ({
+    type: 'payments/updateTotalPrice',
+    payload: amount,
+});
+
 
 // Export reducer
 export default paymentSlice.reducer;

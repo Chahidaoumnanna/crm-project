@@ -16,8 +16,8 @@ const Produits = () => {
     };
 
     return (
-        <div>
-            <h1 className="text-center">Gestion des produits</h1>
+        <div className='shadow-sm p-4 rounded bg-white'>
+            <h5 className='text-muted mb-4 border-bottom pd-2'>Produits : </h5>
             {editingProduct ? (
                 <ModifierProduit
                     editingProduct={editingProduct}
