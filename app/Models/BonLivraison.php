@@ -64,6 +64,7 @@ class BonLivraison extends Model
             $bonLivraison->totale = $bonLivraison->items()->sum('total');
         });
     }
+    //
     public function recalculerTotal()
     {
         $this->totale = $this->items()->sum('total');

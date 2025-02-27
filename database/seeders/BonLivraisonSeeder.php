@@ -18,3 +18,4 @@ class BonLivraisonSeeder extends Seeder
         BonLivraison::factory(20)->create();
     }
 }
+//

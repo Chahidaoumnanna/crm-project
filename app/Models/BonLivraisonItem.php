@@ -59,5 +59,5 @@ class BonLivraisonItem extends Model
             $item->bonLivraison->recalculerTotal();
         });
     }
-
+//
 }

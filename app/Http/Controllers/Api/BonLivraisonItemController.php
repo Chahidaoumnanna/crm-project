@@ -196,7 +196,7 @@ class BonLivraisonItemController extends Controller
                 'total' => $product['qte'] * $product['prixUnitaire'],
             ]);
         }
-
+//
         return response()->json(['message' => 'Items ajoutés avec succès'], 201);
     }
 }
