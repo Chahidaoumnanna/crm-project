@@ -165,7 +165,6 @@
 }
 
 .sidebar-brand {
-    background: linear-gradient(45deg, #d2ccda, #6f9ceb);
     padding: 1.5rem 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -292,7 +291,7 @@
 }
 
 .user-header {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: #b6d4fe;
     padding: 1.5rem;
 }
 
@@ -301,7 +300,7 @@
 }
 
 .user-body .row {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid dodgerblue ;
     padding: 1rem 0;
 }
 
@@ -351,7 +350,6 @@
    Styles pour les liens de navigation
    ========================= */
 .nav-item .nav-link {
-    background: linear-gradient(45deg, #d2ccda, #6f9ceb);
     color: white;
     border-radius: 5px;
     padding: 10px 20px;
@@ -443,6 +441,16 @@
 /* =========================
    Fin des styles
    ========================= */
+/*style de fullscrean*/
 
 
-   
+.fullscreen-toggle {
+    background-color: white; /* Arrière-plan clair */
+    color: black; /* Icônes en noir */
+    border-radius: 50px; /* Coins arrondis */
+    padding: 8px 12px; /* Espacement interne */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition fluide */
+}
+
+
+

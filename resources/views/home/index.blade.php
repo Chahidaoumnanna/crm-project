@@ -105,11 +105,11 @@
         <!-- ./col -->
     </div>
 
-    
+
     <!-- /.row -->
      <!-- /.start Statistiques -->
     <div class="row mt-5">
-        
+
     <div class="card mb-3">
   <div class="card-body p-3">
     <div class="chart">
@@ -117,6 +117,7 @@
     </div>
   </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -171,7 +172,7 @@
                             size: 12, // Taille de la police du texte des tooltips
                         },
                         padding: 10, // Espacement interne des tooltips
-                        cornerRadius: 5, // Coins arrondis des tooltips
+                        cornerRadius: 5, // Coins arrondis des     tooltips
                     }
                 },
                 scales: {
@@ -208,7 +209,40 @@
         });
     });
 </script>
+
 </div>
+    <!-- Liste des 5 derniers clients -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="mb-4">Les 5 derniers clients ajoutés</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Adresse</th>
+                    <th>Type</th>
+                    <th>Date d'ajout</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($latestClients as $client)
+                    <tr>
+                        <td>{{ $client->code }}</td>
+                        <td>{{ $client->name }}</td>
+                        <td>{{ $client->email ?? 'N/A' }}</td>
+                        <td>{{ $client->phone ?? 'N/A' }}</td>
+                        <td>{{ $client->address ?? 'N/A' }}</td>
+                        <td>{{ $client->type }}</td>
+                        <td>{{ $client->created_at->format('d/m/Y H:i') }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
@@ -219,7 +253,6 @@
 
 
 
-    
-    
+
 @endsection
 

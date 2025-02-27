@@ -8,11 +8,7 @@
                 <a class="nav-link mb-sm-3 mb-md-0" data-lte-toggle="sidebar" href="#" role="button">
                     <i class="bi bi-list"></i>
                 </a>
-            <li class="nav-item d-none d-md-block me-2">
-                <a class="nav-link mb-sm-3 mb-md-0 active btn btn-primary rounded-pill" id="tabs-text-1-tab"
-                    data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1"
-                    aria-selected="true">Home</a>
-            </li>
+
 
         </ul>
         <!--end::Start Navbar Links-->
@@ -36,9 +32,8 @@
             </button>
             </li>
            <!--end::Navbar DarkMode-->
-            <!--begin::Fullscreen Toggle-->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-lte-toggle="fullscreen">
+            <li class="nav-item ">
+                <a class="nav-link fullscreen-toggle bg-dark-subtle" href="#" data-lte-toggle="fullscreen">
                     <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                     <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
                 </a>
@@ -46,10 +41,9 @@
             <!--end::Fullscreen Toggle-->
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                    <img src="{{ asset('images/Useravatar.jpg') }}" class="user-image rounded-circle shadow"
-                        alt="User Image" />
-                    <span class="d-none d-md-inline ms-2">Alexander Pierce</span>
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center bg-light text-dark rounded-pill p-2" data-bs-toggle="dropdown">
+                    <img src="{{ asset('images/Useravatar.jpg') }}" class="user-image rounded-circle shadow" alt="User Image" />
+                    <span class="d-none d-md-inline ms-2">Admin</span>
                     <i class="bi bi-chevron-down ms-1"></i> <!-- Icône flèche -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow-lg">
@@ -81,7 +75,7 @@
                             <div class="col-4">
                                 <a href="#" class="text-decoration-none text-dark">
                                     <i class="bi bi-person-plus fs-4"></i> <!-- Icône friends -->
-                                    <p class="mb-0 small">Friends</p>
+                                    <p class="mb-0 small">Ventes</p>
                                 </a>
                             </div>
                         </div>
