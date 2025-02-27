@@ -23,3 +23,4 @@ class Paiement extends Model
         return $this->belongsTo(BonLivraison::class, 'IdBonLivraison');
     }
 }
+//

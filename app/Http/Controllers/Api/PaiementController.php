@@ -90,4 +90,4 @@ class PaiementController extends Controller
             'paiement' => $paiement
         ], 201);
     }
-}
+} //
