@@ -4,12 +4,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Paiement extends Model
 {
-    use HasFactory;
+    use HasFactory  ,SoftDeletes;
 
-    protected $fillable = ['IdBonLivraison','echeanceAt','montant', 'mode' ];
+    protected $fillable =
+        [
+            'IdBonLivraison',
+            'echeanceAt',
+            'montant',
+            'mode'
+        ];
 
     public function bonLivraison()
     {

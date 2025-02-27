@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\Paiement;
+use App\Models\BonLivraison;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Paiement>
- */
 class PaiementFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Paiement::class;
+
+    public function definition()
     {
         return [
-            //
+            'IdBonLivraison' => BonLivraison::factory(), // Génère un bon de livraison aléatoire
+            'echeanceAt' => $this->faker->dateTimeBetween('-1 year', '+6 months'), // Entre l'année passée et dans 6 mois
+            'montant' => $this->faker->randomFloat(2, 50, 5000), // Montant entre 50 et 5000
+            'mode' => $this->faker->randomElement(['Espèces', 'Carte bancaire', 'Virement', 'Chèque']),
         ];
     }
 }

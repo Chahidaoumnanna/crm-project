@@ -129,4 +129,4 @@ const rechercheClientSlice = createSlice({
 });
 
 export const { setSelectedClient, setSearchTerm } = rechercheClientSlice.actions;
-export default rechercheClientSlice.reducer;
+export default  rechercheClientSlice.reducer;

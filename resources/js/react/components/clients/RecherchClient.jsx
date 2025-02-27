@@ -71,6 +71,8 @@
 // };
 //
 // export default RecherchClient;
+
+
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
@@ -80,6 +82,7 @@ import { clearLastAddedClient } from '../../redux/ajouterClientSlice.js';
 
 const RecherchClient = () => {
     const dispatch = useDispatch();
+
 
     // Sélecteurs pour accéder aux données du store
     const clients = useSelector((state) => state.rechercheClient?.clients || []);
@@ -111,7 +114,7 @@ const RecherchClient = () => {
     // Préparer les options pour le composant Select
     const options = clients.map(client => ({
         value: client.id,
-        label: client.name || "Nom inconnu",
+        label: client.name,
         clientData: client
     }));
 
