@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\PaiementController;
 use App\Http\Controllers\Api\BonLivraisonItemController;
 use Illuminate\Support\Facades\Route;
 
+
 // 🔹 Routes publiques : accès sans authentification
 // les Routes publiques
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
@@ -40,7 +41,8 @@ Route::get('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'apiBonL
 Route::get('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'index']);
 Route::post('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'apiCreateBonLivraisonItem'])->name('apiCreateBonLivraisonItem');
 
-
+Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
+Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
 
 
 
@@ -60,7 +62,6 @@ Route::resource('clients', ClientController::class);
 // Routes pour les bons de livraison
 
 
-// Routes pour les paiement
 Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
 Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
 

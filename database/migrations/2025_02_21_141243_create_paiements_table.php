@@ -9,10 +9,10 @@ return new class extends Migration {
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('IdBonLivraison')->constrained('bon_livraisons')->onDelete('cascade'); // Clé étrangère
-            $table->date('echeanceAt'); // Date d'échéance du paiement
+            $table->foreignId('IdBonLivraison')->constrained('bon_livraisons')->onDelete('cascade'); // Clé étrangère
+            $table->date('echeanceAt'); // Date d'échéance du paiement
             $table->decimal('montant', 10, 2); // Montant du paiement
-            $table->string('mode'); // Mode de paiement (ex: Espèce, Chèque, Virement)
+            $table->string('mode'); // Mode de paiement (ex: Espèce, Chèque, Virement)
             $table->softDeletes(); // Pour la suppression douce
             $table->timestamps(); // Ajoute created_at et updated_at
         });
@@ -21,5 +21,5 @@ return new class extends Migration {
     public function down()
     {
         Schema::dropIfExists('paiements');
-    }
+        }
 };

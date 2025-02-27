@@ -12,8 +12,8 @@ class PaiementSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crée 50 paiements factices
+        // Crée 50 paiements factices
         Paiement::factory()->count(50)->create();
-    }
+        }
 }
 //

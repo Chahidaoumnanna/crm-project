@@ -15,9 +15,5 @@ const activationSlice = createSlice({
         },
     },
 });
-
 export const { toggleTva, toggleRemise } = activationSlice.actions;
 export default activationSlice.reducer;
-
-
-

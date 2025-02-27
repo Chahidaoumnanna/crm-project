@@ -26,13 +26,13 @@ class PaiementController extends Controller
         $paiement = Paiement::create($request->validated());
 
         return response()->json([
-            'message' => 'Paiement créé avec succès',
+            'message' => 'Paiement créé avec succès',
             'paiement' => $paiement
         ], 201);
     }
 
     /**
-     * Afficher un paiement spécifique.
+     * Afficher un paiement spécifique.
      */
     public function show(Paiement $paiement)
     {
@@ -40,14 +40,14 @@ class PaiementController extends Controller
     }
 
     /**
-     * Mettre à jour un paiement existant.
+     * Mettre à jour un paiement existant.
      */
     public function update(UpdatePaiementRequest $request, Paiement $paiement)
     {
         $paiement->update($request->validated());
 
         return response()->json([
-            'message' => 'Paiement mis à jour avec succès',
+            'message' => 'Paiement mis à jour avec succès',
             'paiement' => $paiement
         ]);
     }
@@ -60,12 +60,12 @@ class PaiementController extends Controller
         $paiement->delete();
 
         return response()->json([
-            'message' => 'Paiement supprimé avec succès'
+            'message' => 'Paiement supprimé avec succès'
         ]);
     }
 
     /**
-     * Récupérer les paiements avec un filtre optionnel sur IdBonLivraison.
+     * Récupérer les paiements avec un filtre optionnel sur IdBonLivraison.
      */
     public function apiPaiementes($idBonLivraison = null)
     {
@@ -86,8 +86,8 @@ class PaiementController extends Controller
         $paiement = Paiement::create($request->validated());
 
         return response()->json([
-            'message' => 'Paiement créé avec succès !',
+            'message' => 'Paiement créé avec succès !',
             'paiement' => $paiement
         ], 201);
-    }
-} //
+        }
+}

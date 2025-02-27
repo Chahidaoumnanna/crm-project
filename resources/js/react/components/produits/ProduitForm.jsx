@@ -388,21 +388,38 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
         setSelectedProduct(initialProduct.name ? { label: initialProduct.name, value: initialProduct.id } : null);
     }, [initialProduct, isTvaActive]);
 
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     const updatedValue = (name === 'qte' || name === 'prixVente' || name === 'tva' || name === 'remise')
+    //         ? (value === '' ? '' : parseFloat(value))
+    //         : value;
+    //
+    //     setProduct((prevProduct) => {
+    //         const updatedProduct = { ...prevProduct, [name]: updatedValue };
+    //         if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
+    //             updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
+    //         }
+    //         const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
+    //         return { ...updatedProduct, ...calculatedValues };
+    //     });
+    // };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        const updatedValue = (name === 'qte' || name === 'prixVente' || name === 'tva' || name === 'remise')
-            ? (value === '' ? '' : parseFloat(value))
-            : value;
+        const updatedValue = value === '' ? 0 : parseFloat(value);
 
         setProduct((prevProduct) => {
-            const updatedProduct = { ...prevProduct, [name]: updatedValue };
+            const updatedProduct = { ...prevProduct, [name]: isNaN(updatedValue) ? 0 : updatedValue };
+
             if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
                 updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
             }
+
             const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
             return { ...updatedProduct, ...calculatedValues };
         });
     };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -459,9 +476,11 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
                                                 onInputChange={handleSearchChange}
                                                 onChange={(option) => {
                                                     const selected = names.find((p) => p.id === option.value);
-                                                    setProduct({
-                                                        ...selected,
-                                                        pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
+                                                    setProduct(prevState => {
+                                                        return {
+                                                            ...selected,
+                                                            pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
+                                                        }
                                                     });
                                                     setSelectedProduct(option);
                                                 }}
