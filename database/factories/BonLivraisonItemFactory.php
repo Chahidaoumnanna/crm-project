@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\BonLivraisonItem;
+use App\Models\BonLivraison;
+use App\Models\Produit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +12,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BonLivraisonItemFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = BonLivraisonItem::class;
+
+    public function definition()
     {
         return [
-            //
+            'idBonDeLivraison' => BonLivraison::inRandomOrder()->first()->id ?? BonLivraison::factory(),
+            'idProduit' => Produit::inRandomOrder()->first()->id ?? Produit::factory(),
+            'qte' => $this->faker->numberBetween(1, 100),
+            'prixUnitaire' => $this->faker->randomFloat(2, 10, 500),
         ];
     }
 }

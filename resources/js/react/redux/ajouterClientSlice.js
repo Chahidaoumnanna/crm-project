@@ -1,6 +1,6 @@
 // import axios from "axios";
 //
-// // Fonction asynchrone pour récupérer les groupes clients
+// // Fonction asynchrone pour récupérer les groupes clients
 // export const fetchGrp = createAsyncThunk(
 //     "fetchGrp/fetchGrp",
 //     async (groupClient, thunkAPI) => {
@@ -10,7 +10,7 @@
 //             }
 //
 //             const response = await axios.get(
-//                 `http://127.0.0.1:8000/clients_groups?search|name[partial]=${groupClient}`,
+//                 http://127.0.0.1:8000/clients_groups?search|name[partial]=${groupClient},
 //                 {
 //                     params: {
 //                         "search|clientGroup.name[partial]": groupClient
@@ -23,7 +23,7 @@
 //                 label: clientGrp.name,
 //             }));
 //         } catch (error) {
-//             console.error("Erreur reçue de l'API :", error.response?.data || error.message);
+//             console.error("Erreur reçue de l'API :", error.response?.data || error.message);
 //             return thunkAPI.rejectWithValue(error.response?.data?.message || "Une erreur est survenu de lapi get");
 //         }
 //
@@ -38,7 +38,7 @@
 //         try {
 //             const response = await axios.post(
 //                 "https://testapp.novicore.ma/api/clients", // URL de l'API
-//                 FormData, // Données du client à ajouter
+//                 FormData, // Données du client à ajouter
 //                 {
 //                     headers: {
 //                         "Content-Type": "application/json", // Type de contenu
@@ -48,7 +48,7 @@
 //             console.log("Client added successfully:", response.data);
 //             return response.data;
 //         } catch (error) {
-//             console.error("Erreur reçue de l'API :", error.response?.data || error.message);
+//             console.error("Erreur reçue de l'API :", error.response?.data || error.message);
 //             return thunkAPI.rejectWithValue(error.response?.data?.message || "Une erreur est survenue ");
 //         }
 //     }
@@ -76,15 +76,15 @@
 //             state.searchGroup = action.payload;
 //         },
 //         addClientSuccess: (state, action) => {
-//             state.lastAddedClient = action.payload; // Sauvegarde le client ajouté
+//             state.lastAddedClient = action.payload; // Sauvegarde le client ajouté
 //         },
 //         clearLastAddedClient: (state) => {
-//             state.lastAddedClient = null; // Réinitialise après sélection
+//             state.lastAddedClient = null; // Réinitialise après sélection
 //         },
 //     },
 //     extraReducers: (builder) => {
 //         builder
-//             // Gestion de la récupération des groupes
+//             // Gestion de la récupération des groupes
 //             .addCase(fetchGrp.pending, (state) => {
 //                 state.loading = true;
 //                 state.error = null;
@@ -107,7 +107,7 @@
 //             .addCase(addClient.fulfilled, (state) => {
 //
 //                 state.addClientLoading = false;
-//                 state.lastAddedClient=false;      //stocke le dernier client ajouté
+//                 state.lastAddedClient=false;      //stocke le dernier client ajouté
 //
 //             })
 //             .addCase(addClient.rejected, (state, action) => {

@@ -132,9 +132,6 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
     return (
         <div className="container mt-4">
             <div className="card shadow-sm">
-                {/*<div className="card-header bg-info text-white">*/}
-                {/*    /!*<h5 className="card-title mb-0">Gestion des Produits</h5>*!/*/}
-                {/*</div>*/}
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
                         <div className="d-flex justify-content-start mb-4">
@@ -202,15 +199,13 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
                                                 onChange={handleSelectProduct}
                                                 onKeyDown={handleKeyDown}
                                                 options={filteredProducts.map(p => ({ label: p.name, value: p.id }))}
-                                                placeholder="Rechercher par nom ou scanner un code-barres"
-                                                className="form-control"
                                             />
                                             <small
                                                 className="text-muted"
                                                 style={{ cursor: 'pointer', color: 'blue' }}
                                                 onClick={() => setIsManualEntry(true)}
                                             >
-                                                Ajouter un nouvel name
+                                                Ajouter un nouvel Article
                                             </small>
                                         </>
                                     )}
@@ -279,7 +274,7 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
                                             value={product.pht}
                                             onChange={handleChange}
                                             className="form-control"
-                                            readOnly // Prix HT est calculé automatiquement
+                                            readOnly
                                         />
                                     </td>
                                 )}

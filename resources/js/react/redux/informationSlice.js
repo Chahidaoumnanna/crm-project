@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
-// Définition de l’état initial
+// Définition de l’état initial
 const initialState = {
     nlivraison: "1",
     date:dayjs().format("YYYY-MM-DDTHH:mm"),
@@ -8,7 +8,7 @@ const initialState = {
     showAddUser: false,
 };
 
-// Création du slice Redux
+// Création du slice Redux
 const formInfoSlice = createSlice({
     name: "formInfo",
     initialState,

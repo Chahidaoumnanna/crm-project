@@ -4,8 +4,10 @@
     @vite(['resources/js/react/index.jsx'])
 @endsection
 @section('title', 'Bon de Livraison')
-@section('bodyTitle', 'Bon De Livaison')
+@section('bodyTitle', 'Bon de livraison')
 
 @section('body')
     <div id="react-root"></div>
 @endsection
+
+
