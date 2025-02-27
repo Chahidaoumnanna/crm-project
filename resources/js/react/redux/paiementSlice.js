@@ -17,7 +17,7 @@ const paymentSlice = createSlice({
                 const firstPayment = state.payments[0];
                 firstPayment.amount -= newPayment.amount;
             }
-            state.payments.push(newPayment);
+            state.payments.unshift(newPayment);
         },
 
 

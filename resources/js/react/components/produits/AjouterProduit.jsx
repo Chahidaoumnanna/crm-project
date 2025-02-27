@@ -76,9 +76,15 @@ const AjouterProduits = () => {
         setSearchTerm(''); // Réinitialiser le champ de recherche
     };
 
-    const filteredProducts = names.filter((p) =>
+    if (!Array.isArray(names)) {
+        console.log("names is not an array:", names);
+        return [];
+    }
+    const filteredProducts = (names || []).filter((p) =>
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+
 
     const handleSubmit = (product) => {
         // Vérifier si la quantité est valide
