@@ -214,6 +214,7 @@ class BonLivraisonController extends Controller
 //        }
 //
 //        $bonLivraison->update(['totale' => $total]);
+        //
 
         return response()->json(['message' => 'Bon de livraison créé avec succès', 'data' => $bonLivraison], 201);
     }

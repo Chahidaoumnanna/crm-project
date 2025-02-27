@@ -23,3 +23,4 @@ class BonLivraisonItemSeeder extends Seeder
         BonLivraisonItem::factory(50)->create();
     }
 }
+//
