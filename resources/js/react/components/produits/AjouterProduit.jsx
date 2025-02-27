@@ -11,7 +11,7 @@ const AjouterProduits = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [initialProduct, setInitialProduct] = useState({
         code: '',
-        name: '',
+        name: '',//
         tva: 0,
         remise: 0,
         qte: 0,
