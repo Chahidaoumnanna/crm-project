@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Paiement;
 
 class PaiementSeeder extends Seeder
 {
@@ -12,6 +12,8 @@ class PaiementSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-    }
+        // Crée 50 paiements factices
+        Paiement::factory()->count(50)->create();
+        }
 }
+//

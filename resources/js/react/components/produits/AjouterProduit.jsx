@@ -12,7 +12,7 @@ const AjouterProduits = () => {
     const [initialProduct, setInitialProduct] = useState({
         code: '',
         name: '',
-        tva: 0 *100,
+        tva: 0,
         remise: 0,
         qte: 0,
         prixVente: 0,
@@ -60,20 +60,20 @@ const AjouterProduits = () => {
 
     const handleSelectProduct = (product) => {
         setInitialProduct({
-            id: product.id, // Assurez-vous que l'id est bien récupéré
+            id: product.id || '',
             code: product.code || '',
             name: product.name || '',
-            tva: product.tva || 0 * 100,
-            remise: product.remise || 0,
-            qte: product.qte || 0,
-            prixVente: product.prixVente || 0,
-            prixRevient: product.prixRevient || 0,
-            pht: product.pht || 0,
-            total: product.total || 0,
-            qty: product.qty || 0,
-            Remise: product.remise || 0,
+            tva: product.tva ? parseFloat(product.tva) : 0,
+            remise: product.remise ? parseFloat(product.remise) : 0,
+            qte: product.qte ? parseInt(product.qte) : 0,
+            prixVente: product.prixVente ? parseFloat(product.prixVente) : 0,
+            prixRevient: product.prixRevient ? parseFloat(product.prixRevient) : 0,
+            pht: product.pht ? parseFloat(product.pht) : 0,
+            total: product.total ? parseFloat(product.total) : 0,
+            qty: product.qty ? parseInt(product.qty) : 0,
+            Remise: product.remise ? parseFloat(product.remise) : 0,
         });
-        setSearchTerm(''); // Réinitialiser le champ de recherche
+    setSearchTerm(''); // Réinitialiser le champ de recherche
     };
 
     const filteredProducts = names.filter((p) =>
@@ -105,7 +105,7 @@ const AjouterProduits = () => {
         setInitialProduct({
             code: '',
             name: '',
-            tva: 0 * 100,
+            tva: 0,
             remise: 0,
             qte: 0,
             prixVente: 0,
