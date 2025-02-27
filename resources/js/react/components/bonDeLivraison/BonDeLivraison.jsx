@@ -76,6 +76,7 @@ import autoTable from "jspdf-autotable";
 const BonLivraison = () => {
     const listeProducts = useSelector((state) => state.products.listeproducts);
     const selectedClient = useSelector((state) => state.rechercheClient.selectedClient);
+    const paiements = useSelector((state) => state.payments.payments);
 
     const handleSaveBonLivraison = async () => {
         if (!selectedClient || !selectedClient.name) {
@@ -111,6 +112,24 @@ const BonLivraison = () => {
             });
 
             alert("Bon de livraison et produits enregistrés avec succès !");
+             const paiement=paiements.map(p=>({
+                 mode:p.paymentMode,
+                 montant:p.amount,
+                 echeanceAt:p.dueDate,
+
+
+
+
+                 })
+             )
+             //api paiement
+
+              await axios.post("http://127.0.0.1:8000/api/paiements", {
+                   idBonDeLivraison,
+                  paiement
+               });
+
+
 
             // 4️⃣ Générer et afficher le PDF après enregistrement
             generatePDF(selectedClient, idBonDeLivraison, products);
