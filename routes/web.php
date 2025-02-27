@@ -65,5 +65,4 @@ Route::resource('clients', ClientController::class);
 Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
 Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
 
-
 //
