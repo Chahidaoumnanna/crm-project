@@ -1,46 +1,65 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bon de Livraison</title>
-    <style>
-        body { font-family: DejaVu Sans, sans-serif; }
-        .container { width: 100%; padding: 20px; }
-        h2 { text-align: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <h2>Bon de Livraison - {{ $bonLivraison->ref }}</h2>
-    <p><strong>Date :</strong> {{ $bonLivraison->docAt }}</p>
-    <p><strong>Client :</strong> {{ $client->name }}</p>
-
-    <table>
-        <thead>
+<table border="2">
+    <tr >
+        <td><b>BON DE LIVRAISON N :3333</b></td>
+    </tr>
+    <tr>
+        <td>client: {{$bon->client->name}}</td>
+    </tr>
+</table>
+<table border="2">
+    <thead>
+    <th>#</th>
+    <th>Des</th>
+    <th>qte</th>
+    <th>P.U</th>
+    <th>Totale</th>
+    </thead>
+    <tbody>
+    @foreach($bon->items as $item)
         <tr>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix Unitaire</th>
-            <th>Total</th>
+            <td>{{ $item->id }}</td>
+            <td>{{ $item->name }}</td> <!-- Assure-toi d'afficher un champ correct -->
+            <td>{{ $item->qte }}</td>
+            <td>{{ $item->prixUnitaire }}</td>
+            <td>{{ $item->total }}</td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach($items as $item)
-            <tr>
-                <td>{{ $item->produit->nom }}</td>
-                <td>{{ $item->qte }}</td>
-                <td>{{ number_format($item->prixUnitaire, 2) }} €</td>
-                <td>{{ number_format($item->total, 2) }} €</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    @endforeach
+    </tbody>
+</table>
+<h1>detaile des paiement</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Montant</th>
+        <th>mode</th>
+        <th>echeance</th>
+    </tr>
 
-    <p><strong>Total :</strong> {{ number_format($bonLivraison->totale, 2) }} €</p>
-</div>
+    </thead>
+    <tbody>
+    @forelse($bon->paiements as $paiement)
+        <tr>
+            <td>{{ $paiement->montant }}</td>
+            <td>{{ $paiement->mode }}</td>
+            <td>{{ $paiement->echeanceAt }}</td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="3">Aucun paiement enregistré.</td>
+        </tr>
+    @endforelse
+    </tbody>
+</table>
 </body>
 </html>
+

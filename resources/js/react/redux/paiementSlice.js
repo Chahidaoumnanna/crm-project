@@ -77,7 +77,7 @@ import dayjs from 'dayjs';
 
 const initialState = {
     payments: [],
-    paymentMode: 'Crédit',
+    paymentMode: 'credit',
     amount: 0,
     dueDate: dayjs().format('YYYY-MM-DD'),
     chequeOrEffet: ''

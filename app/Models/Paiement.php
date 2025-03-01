@@ -12,7 +12,7 @@ class Paiement extends Model
 
     protected $fillable =
         [
-            'IdBonLivraison',
+            'idBonDeLivraison',
             'echeanceAt',
             'montant',
             'mode'
@@ -20,7 +20,7 @@ class Paiement extends Model
 
     public function bonLivraison()
     {
-        return $this->belongsTo(BonLivraison::class, 'IdBonLivraison');
+        return $this->belongsTo(BonLivraison::class, 'idBonDeLivraison');
     }
 }
 //

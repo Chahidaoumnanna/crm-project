@@ -43,10 +43,13 @@ class BonLivraison extends Model
         return $this->belongsTo(Client::class, 'idClient'); // Relation vers le modèle Client
     }
 
+
     public function paiements()
     {
-        return $this->hasMany(Paiement::class);
+        return $this->hasMany(Paiement::class, 'idBonDeLivraison');
     }
+
+
 
     public function bonLivraisonItems()
     {

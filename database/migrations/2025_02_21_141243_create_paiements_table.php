@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('IdBonLivraison')->constrained('bon_livraisons')->onDelete('cascade'); // Clé étrangère
+            $table->foreignId('idBonDeLivraison')->constrained('bon_livraisons');
             $table->date('echeanceAt'); // Date d'échéance du paiement
             $table->decimal('montant', 10, 2); // Montant du paiement
             $table->string('mode'); // Mode de paiement (ex: Espèce, Chèque, Virement)

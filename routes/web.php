@@ -31,6 +31,7 @@ Route::get('/api/produits', [ProduitController::class, 'apiProduits']);
 
 
 Route::get('/bon-de-livraison', [BonLivraisonController::class, 'index'])->name('bonlivraison.index');
+Route::get('/bon-de-livraison/create', [BonLivraisonController::class, 'create'])->name('bonlivraison.create'); // Ajoutez cette ligne
 
 Route::get('/api/bon-de-livraison', [BonLivraisonController::class, 'apiBonLivraison'])->name('apiBonLivraison');
 
@@ -41,17 +42,10 @@ Route::get('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'apiBonL
 Route::get('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'index']);
 Route::post('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'apiCreateBonLivraisonItem'])->name('apiCreateBonLivraisonItem');
 
-Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
-Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
+Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiement'])->name('apiCreatePaiement');
+Route::get('/paimentes', [PaiementController::class, 'apiPaiementes'])->name('apiPaiementes');
 
 
-
-
-
-
-
-// Routes pour les clients
-// Dans votre fichier de routes
 Route::get('/api/clients', [ClientController::class, 'apiClients']);
 Route::post( '/api/clients',[ClientController::class,'apiCreateClient']);
 
@@ -59,11 +53,6 @@ Route::post( '/api/clients',[ClientController::class,'apiCreateClient']);
 
 Route::resource('clients', ClientController::class);
 
-// Routes pour les bons de livraison
-
-
-Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
-Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
-
+Route::get('/pdf/{id}',[\App\Http\Controllers\PdfController::class,'print'])->name('pdf');
 
 //

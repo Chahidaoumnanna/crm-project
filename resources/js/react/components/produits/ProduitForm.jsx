@@ -1,11 +1,15 @@
+
+
+// export default ProduitForm;
+//
 //
 // import React, { useState, useEffect } from 'react';
 // import Select from 'react-select';
 // import { FaToggleOn, FaToggleOff } from 'react-icons/fa';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-// import {calculateValues} from "./Calcule.jsx";
+// import { calculateValues } from "./Calcule.jsx";
 // import { useDispatch, useSelector } from 'react-redux';
-// import {toggleTva , toggleRemise} from "../../redux/activationTvaRemiseSlice.js";
+// import { toggleTva, toggleRemise } from "../../redux/activationTvaRemiseSlice.js";
 //
 // const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, handleKeyDown, filteredProducts, isManualEntry, setIsManualEntry }) => {
 //     const dispatch = useDispatch();
@@ -22,7 +26,193 @@
 //         prixRevient: 0,
 //         pht: 0,
 //         total: 0,
-//         qty: 0,
+//         Remise: 0,
+//         ...initialProduct
+//     });
+//
+//     const [selectedProduct, setSelectedProduct] = useState(
+//         initialProduct.name
+//             ? { label: initialProduct.name, value: initialProduct.id }
+//             : null
+//     );
+//
+//     useEffect(() => {
+//         const updatedProduct = {
+//             ...initialProduct,
+//             pht: isTvaActive ? initialProduct.prixVente / (1 + initialProduct.tva / 100) : initialProduct.prixVente
+//         };
+//         setProduct(updatedProduct);
+//         setSelectedProduct(initialProduct.name ? { label: initialProduct.name, value: initialProduct.id } : null);
+//     }, [initialProduct, isTvaActive]);
+//
+//     // const handleChange = (e) => {
+//     //     const { name, value } = e.target;
+//     //     const updatedValue = (name === 'qte' || name === 'prixVente' || name === 'tva' || name === 'remise')
+//     //         ? (value === '' ? '' : parseFloat(value))
+//     //         : value;
+//     //
+//     //     setProduct((prevProduct) => {
+//     //         const updatedProduct = { ...prevProduct, [name]: updatedValue };
+//     //         if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
+//     //             updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
+//     //         }
+//     //         const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
+//     //         return { ...updatedProduct, ...calculatedValues };
+//     //     });
+//     // };
+//
+//     const handleChange = (e) => {
+//         const { name, value } = e.target;
+//         const updatedValue = value === '' ? 0 : parseFloat(value);
+//
+//         setProduct((prevProduct) => {
+//             const updatedProduct = { ...prevProduct, [name]: isNaN(updatedValue) ? 0 : updatedValue };
+//
+//             if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
+//                 updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
+//             }
+//
+//             const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
+//             return { ...updatedProduct, ...calculatedValues };
+//         });
+//     };
+//
+//
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+//         if (product.qte <= 0) {
+//             alert("La quantité doit être supérieure à zéro");
+//             return;
+//         }
+//         onSubmit(product);
+//     };
+//
+//     return (
+//         <div className="container-fluid mt-3">
+//             <div className="card shadow-sm">
+//                 <div className="card-body">
+//                     <div className="d-flex justify-content-start mb-3">
+//                         <div className="me-3" onClick={() => dispatch(toggleTva())} style={{ cursor: 'pointer' }}>
+//                             {isTvaActive ? <FaToggleOn size={20} color="#007bff" /> : <FaToggleOff size={20} color="#ccc" />}
+//                             <span className="ms-1">TVA</span>
+//                         </div>
+//                         <div onClick={() => dispatch(toggleRemise())} style={{ cursor: 'pointer' }}>
+//                             {isRemiseActive ? <FaToggleOn size={20} color="#007bff" /> : <FaToggleOff size={20} color="#ccc" />}
+//                             <span className="ms-1">Remise</span>
+//                         </div>
+//                     </div>
+//
+//                     <form onSubmit={handleSubmit}>
+//                         <table className="table table-sm table-bordered table-hover w-100">
+//                             <thead className="table-dark text-center">
+//                             <tr>
+//                                 <th>Réf</th>
+//                                 <th>Article</th>
+//                                 {isTvaActive && <th>TVA (%)</th>}
+//                                 {isRemiseActive && <th>Remise (%)</th>}
+//                                 <th>Qté</th>
+//                                 {isTvaActive && <th>Prix HT</th>}
+//                                 {isTvaActive ? <th>Prix TTC</th> : <th>Prix</th>}
+//                                 <th>Total</th>
+//                                 <th>Action</th>
+//                             </tr>
+//                             </thead>
+//                             <tbody>
+//                             <tr>
+//                                 <td>
+//                                     <input type="text" name="code" value={product.code} onChange={handleChange} className="form-control form-control-sm" required />
+//                                 </td>
+//                                 <td>
+//                                     {isManualEntry ? (
+//                                         <input type="text" name="name" value={product.name} onChange={handleChange} className="form-control form-control-sm" required />
+//                                     ) : (
+//                                         <>
+//                                             <Select
+//                                                 name="name"
+//                                                 value={selectedProduct}
+//                                                 onInputChange={handleSearchChange}
+//                                                 onChange={(option) => {
+//                                                     const selected = names.find((p) => p.id === option.value);
+//                                                     setProduct(prevState => {
+//                                                         return {
+//                                                             ...selected,
+//                                                             pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
+//                                                         }
+//                                                     });
+//                                                     setSelectedProduct(option);
+//                                                 }}
+//                                                 options={filteredProducts.map(p => ({ label: p.name, value: p.id }))}
+//                                             />
+//                                             <small className="text-primary" style={{ cursor: 'pointer' }} onClick={() => setIsManualEntry(true)}>Ajouter un nouvel name</small>
+//                                         </>
+//                                     )}
+//                                 </td>
+//                                 {isTvaActive && (
+//                                     <td>
+//                                         <input type="number" name="tva" value={product.tva} onChange={handleChange} className="form-control form-control-sm" />
+//                                     </td>
+//                                 )}
+//                                 {isRemiseActive && (
+//                                     <td>
+//                                         <input type="number" name="remise" value={product.remise} onChange={handleChange} className="form-control form-control-sm" />
+//                                     </td>
+//                                 )}
+//                                 <td>
+//                                     <input type="number" name="qte" value={product.qte} onChange={handleChange} className="form-control form-control-sm" required />
+//                                 </td>
+//                                 {isTvaActive && (
+//                                     <td>
+//                                         <input type="number" name="pht" value={product.pht} className="form-control form-control-sm" readOnly />
+//                                     </td>
+//                                 )}
+//                                 <td>
+//                                     <input type="number" name="prixVente" value={product.prixVente} onChange={handleChange} className="form-control form-control-sm" />
+//                                 </td>
+//                                 <td>
+//                                     <input type="number" name="total" value={product.total} className="form-control form-control-sm" readOnly />
+//                                 </td>
+//                                 <td>
+//                                     <button type="submit" className="btn btn-sm btn-success">✔</button>
+//                                 </td>
+//                             </tr>
+//                             </tbody>
+//                         </table>
+//                     </form>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
+//
+// export default ProduitForm;
+//
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import Select from 'react-select';
+// import { FaToggleOn, FaToggleOff } from 'react-icons/fa';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import {calculateValues} from "@/react/components/produits/Calcule.jsx";
+// import { useDispatch, useSelector } from 'react-redux';
+// import { toggleTva, toggleRemise } from "../../redux/activationTvaRemiseSlice.js";
+// const ProduitForm = ({ initialProduct, onSubmit, articles, handleSearchChange, handleKeyDown, filteredProducts, isManualEntry, setIsManualEntry }) => {
+//     const dispatch = useDispatch();
+//     const isTvaActive = useSelector((state) => state.activation.isTvaActive);
+//     const isRemiseActive = useSelector((state) => state.activation.isRemiseActive);
+//
+//     const [product, setProduct] = useState({
+//         code: '',
+//         name: '',
+//         tva: 0,
+//         remise: 0,
+//         qte: 0,
+//         prixVente: 0,
+//         prixRevient: 0,
+//         pht: 0,
+//         total: 0,
 //         Remise:0,
 //         ...initialProduct
 //     });
@@ -49,7 +239,7 @@
 //             prixRevient: 0,
 //             pht: 0,
 //             total: 0,
-//             Remise:0,
+//                 Remise:0,
 //             ...initialProduct
 //         };
 //
@@ -68,7 +258,7 @@
 //
 //     const handleSelectProduct = (option) => {
 //         if (!option) return;
-//         const product = names.find((p) => p.id === option.value);
+//         const product = articles.find((p) => p.id === option.value);
 //         if (product) {
 //             setSelectedProduct(option);
 //             const updatedProduct = {
@@ -81,7 +271,7 @@
 //                 qte: product.qte || 0,
 //                 prixVente: product.prixVente || 0,
 //                 prixRevient: product.prixRevient || 0,
-//                 pht: calculatePrixHT(product.prixVente, product.tva * 100),
+//                 pht: calculatePrixHT(product.prixVente, product.tva ),
 //                 total: product.total || 0,
 //                 Remise: product.remise || 0,
 //             };
@@ -132,6 +322,9 @@
 //     return (
 //         <div className="container mt-4">
 //             <div className="card shadow-sm">
+//                 <div className="card-header bg-info text-white">
+//                     <h5 className="card-title mb-0">Gestion des Produits</h5>
+//                 </div>
 //                 <div className="card-body">
 //                     <form onSubmit={handleSubmit}>
 //                         <div className="d-flex justify-content-start mb-4">
@@ -199,13 +392,15 @@
 //                                                 onChange={handleSelectProduct}
 //                                                 onKeyDown={handleKeyDown}
 //                                                 options={filteredProducts.map(p => ({ label: p.name, value: p.id }))}
+//                                                 placeholder="Rechercher par nom ou scanner un code-barres"
+//                                                 className="form-control"
 //                                             />
 //                                             <small
 //                                                 className="text-muted"
 //                                                 style={{ cursor: 'pointer', color: 'blue' }}
 //                                                 onClick={() => setIsManualEntry(true)}
 //                                             >
-//                                                 Ajouter un nouvel Article
+//                                                 Ajouter un nouvel name
 //                                             </small>
 //                                         </>
 //                                     )}
@@ -217,13 +412,12 @@
 //                                             id="tva"
 //                                             value={product}
 //                                             onChange={(e) => {
-//                                                 const tvaValue = parseFloat(e.target.value) / 100;
+//                                                 const tvaValue = parseFloat(e.target.value);
 //                                                 handleChange({ target: { name: 'tva', value: tvaValue } });
 //                                             }}
 //                                             className="form-control"
 //                                             required
 //                                         >
-//                                             <option>{product.tva}</option>
 //                                             <option value={0}>0%</option>
 //                                             <option value={0.7}>7%</option>
 //                                             <option value={10}>10%</option>
@@ -264,6 +458,7 @@
 //                                         className="form-control"
 //                                         required
 //                                     />
+//
 //                                 </td>
 //                                 {isTvaActive && (
 //                                     <td>
@@ -274,7 +469,7 @@
 //                                             value={product.pht}
 //                                             onChange={handleChange}
 //                                             className="form-control"
-//                                             readOnly
+//                                             readOnly // Prix HT est calculé automatiquement
 //                                         />
 //                                     </td>
 //                                 )}
@@ -346,15 +541,16 @@
 // export default ProduitForm;
 
 
+
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { calculateValues } from "./Calcule.jsx";
+import { calculateValues } from "@/react/components/produits/Calcule.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTva, toggleRemise } from "../../redux/activationTvaRemiseSlice.js";
 
-const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, handleKeyDown, filteredProducts, isManualEntry, setIsManualEntry }) => {
+const ProduitForm = ({ initialProduct, onSubmit, articles, handleSearchChange, handleKeyDown, filteredProducts, isManualEntry, setIsManualEntry }) => {
     const dispatch = useDispatch();
     const isTvaActive = useSelector((state) => state.activation.isTvaActive);
     const isRemiseActive = useSelector((state) => state.activation.isRemiseActive);
@@ -374,52 +570,78 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
     });
 
     const [selectedProduct, setSelectedProduct] = useState(
-        initialProduct.name
-            ? { label: initialProduct.name, value: initialProduct.id }
-            : null
+        initialProduct?.name ? { label: initialProduct.name, value: initialProduct.id } : null
     );
+
+    const calculatePrixHT = (prixVente, tva) => {
+        return isTvaActive && tva ? prixVente / (1 + tva / 100) : prixVente;
+    };
 
     useEffect(() => {
         const updatedProduct = {
-            ...initialProduct,
-            pht: isTvaActive ? initialProduct.prixVente / (1 + initialProduct.tva / 100) : initialProduct.prixVente
+            code: '',
+            name: '',
+            tva: 0,
+            remise: 0,
+            qte: 0,
+            prixVente: 0,
+            prixRevient: 0,
+            pht: 0,
+            total: 0,
+            Remise: 0,
+            ...initialProduct
         };
+
+        if (isTvaActive) {
+            updatedProduct.pht = calculatePrixHT(updatedProduct.prixVente, updatedProduct.tva);
+        }
+
         setProduct(updatedProduct);
-        setSelectedProduct(initialProduct.name ? { label: initialProduct.name, value: initialProduct.id } : null);
+        setSelectedProduct(initialProduct?.name ? { label: initialProduct.name, value: initialProduct.id } : null);
     }, [initialProduct, isTvaActive]);
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     const updatedValue = (name === 'qte' || name === 'prixVente' || name === 'tva' || name === 'remise')
-    //         ? (value === '' ? '' : parseFloat(value))
-    //         : value;
-    //
-    //     setProduct((prevProduct) => {
-    //         const updatedProduct = { ...prevProduct, [name]: updatedValue };
-    //         if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
-    //             updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
-    //         }
-    //         const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
-    //         return { ...updatedProduct, ...calculatedValues };
-    //     });
-    // };
+    const handleSelectProduct = (option) => {
+        if (!option) return;
+        const product = articles.find((p) => p.id === option.value);
+        if (product) {
+            const updatedProduct = {
+                ...product,
+                code: product.code || '',
+                id: product.id,
+                name: product.name || '',
+                tva: product.tva || 0,
+                remise: product.remise || 0,
+                qte: product.qte || 0,
+                prixVente: product.prixVente || 0,
+                prixRevient: product.prixRevient || 0,
+                pht: calculatePrixHT(product.prixVente, product.tva),
+                total: product.total || 0,
+                Remise: product.remise || 0,
+            };
+            setProduct(updatedProduct);
+            setSelectedProduct(option);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        const updatedValue = value === '' ? 0 : parseFloat(value);
+
+        const updatedValue =
+            name === 'qte' || name === 'prixVente' || name === 'tva' || name === 'remise'
+                ? value === '' ? 0 : parseFloat(value) || 0
+                : value;
 
         setProduct((prevProduct) => {
-            const updatedProduct = { ...prevProduct, [name]: isNaN(updatedValue) ? 0 : updatedValue };
+            const updatedProduct = { ...prevProduct, [name]: updatedValue };
 
             if (isTvaActive && (name === 'tva' || name === 'prixVente')) {
-                updatedProduct.pht = updatedProduct.prixVente / (1 + updatedProduct.tva / 100);
+                updatedProduct.pht = calculatePrixHT(updatedProduct.prixVente, updatedProduct.tva);
             }
 
             const calculatedValues = calculateValues(updatedProduct, isTvaActive, isRemiseActive);
             return { ...updatedProduct, ...calculatedValues };
         });
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -430,92 +652,72 @@ const ProduitForm = ({ initialProduct, onSubmit, names, handleSearchChange, hand
         onSubmit(product);
     };
 
-    return (
-        <div className="container-fluid mt-3">
-            <div className="card shadow-sm">
-                <div className="card-body">
-                    <div className="d-flex justify-content-start mb-3">
-                        <div className="me-3" onClick={() => dispatch(toggleTva())} style={{ cursor: 'pointer' }}>
-                            {isTvaActive ? <FaToggleOn size={20} color="#007bff" /> : <FaToggleOff size={20} color="#ccc" />}
-                            <span className="ms-1">TVA</span>
-                        </div>
-                        <div onClick={() => dispatch(toggleRemise())} style={{ cursor: 'pointer' }}>
-                            {isRemiseActive ? <FaToggleOn size={20} color="#007bff" /> : <FaToggleOff size={20} color="#ccc" />}
-                            <span className="ms-1">Remise</span>
-                        </div>
-                    </div>
+    const handleToggleTva = () => dispatch(toggleTva());
+    const handleToggleRemise = () => dispatch(toggleRemise());
 
+    return (
+        <div className="container mt-4">
+            <div className="card shadow-sm">
+                <div className="card-header bg-info text-white">
+                    <h5 className="card-title mb-0">Gestion des Produits</h5>
+                </div>
+                <div className="card-body">
                     <form onSubmit={handleSubmit}>
-                        <table className="table table-sm table-bordered table-hover w-100">
-                            <thead className="table-dark text-center">
+                        <table className="table table-bordered table-hover">
+                            <thead className="thead-dark">
                             <tr>
-                                <th>Réf</th>
+                                <th>Référence</th>
                                 <th>Article</th>
                                 {isTvaActive && <th>TVA (%)</th>}
                                 {isRemiseActive && <th>Remise (%)</th>}
-                                <th>Qté</th>
+                                <th>Quantité</th>
                                 {isTvaActive && <th>Prix HT</th>}
                                 {isTvaActive ? <th>Prix TTC</th> : <th>Prix</th>}
                                 <th>Total</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" name="code" value={product.code} onChange={handleChange} className="form-control form-control-sm" required />
+                                    <input type="text" name="code" value={product.code} onChange={handleChange} className="form-control" required />
                                 </td>
                                 <td>
                                     {isManualEntry ? (
-                                        <input type="text" name="name" value={product.name} onChange={handleChange} className="form-control form-control-sm" required />
+                                        <input type="text" name="name" value={product.name} onChange={handleChange} className="form-control" required />
                                     ) : (
-                                        <>
-                                            <Select
-                                                name="name"
-                                                value={selectedProduct}
-                                                onInputChange={handleSearchChange}
-                                                onChange={(option) => {
-                                                    const selected = names.find((p) => p.id === option.value);
-                                                    setProduct(prevState => {
-                                                        return {
-                                                            ...selected,
-                                                            pht: isTvaActive ? selected.prixVente / (1 + selected.tva / 100) : selected.prixVente
-                                                        }
-                                                    });
-                                                    setSelectedProduct(option);
-                                                }}
-                                                options={filteredProducts.map(p => ({ label: p.name, value: p.id }))}
-                                            />
-                                            <small className="text-primary" style={{ cursor: 'pointer' }} onClick={() => setIsManualEntry(true)}>Ajouter un nouvel article</small>
-                                        </>
+                                        <Select
+                                            name="name"
+                                            value={selectedProduct}
+                                            onInputChange={handleSearchChange}
+                                            onChange={handleSelectProduct}
+                                            onKeyDown={handleKeyDown}
+                                            options={filteredProducts.map(p => ({ label: p.name, value: p.id }))}
+                                            className="form-control"
+                                        />
                                     )}
                                 </td>
                                 {isTvaActive && (
                                     <td>
-                                        <input type="number" name="tva" value={product.tva} onChange={handleChange} className="form-control form-control-sm" />
-                                    </td>
-                                )}
-                                {isRemiseActive && (
-                                    <td>
-                                        <input type="number" name="remise" value={product.remise} onChange={handleChange} className="form-control form-control-sm" />
+                                        <input type="number" name="tva" value={product.tva} onChange={handleChange} className="form-control" min="0" />
                                     </td>
                                 )}
                                 <td>
-                                    <input type="number" name="qte" value={product.qte} onChange={handleChange} className="form-control form-control-sm" required />
+                                    <input type="number" name="qte" value={product.qte} onChange={handleChange} className="form-control" required />
                                 </td>
                                 {isTvaActive && (
                                     <td>
-                                        <input type="number" name="pht" value={product.pht} className="form-control form-control-sm" readOnly />
+                                        <input type="number" name="pht" value={product.pht} className="form-control" readOnly />
                                     </td>
                                 )}
                                 <td>
-                                    <input type="number" name="prixVente" value={product.prixVente} onChange={handleChange} className="form-control form-control-sm" />
+                                    <input type="number" name="prixVente" value={product.prixVente} onChange={handleChange} className="form-control" />
                                 </td>
                                 <td>
-                                    <input type="number" name="total" value={product.total} className="form-control form-control-sm" readOnly />
+                                    <input type="number" name="total" value={product.total} className="form-control" readOnly />
                                 </td>
                                 <td>
-                                    <button type="submit" className="btn btn-sm btn-success">✔</button>
+                                    <button type="submit" className="btn btn-success">Enregistrer</button>
                                 </td>
                             </tr>
                             </tbody>
