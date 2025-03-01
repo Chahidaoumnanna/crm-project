@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ProduitController;
 use App\Http\Controllers\Api\PaiementController;
 use App\Http\Controllers\Api\BonLivraisonItemController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 
 
 // 🔹 Routes publiques : accès sans authentification
@@ -54,5 +55,6 @@ Route::post( '/api/clients',[ClientController::class,'apiCreateClient']);
 Route::resource('clients', ClientController::class);
 
 Route::get('/pdf/{id}',[\App\Http\Controllers\PdfController::class,'print'])->name('pdf');
+Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.index');
 
 //
