@@ -161,6 +161,8 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
+
+
         $search = $request->query('search');
 
         // Filtrer les clients en fonction de la recherche avec pagination
@@ -291,4 +293,15 @@ class ClientController extends Controller
         return response()->json($client, 201);
 
     }
+    public function latestClients()
+    {
+
+        $latestClients = Client::orderBy('created_at', 'desc')->take(5)->get();
+
+        // Passer les données à la vue
+        return view('home', [
+            'latestClients' => $latestClients
+        ]);
+    }
+
 }

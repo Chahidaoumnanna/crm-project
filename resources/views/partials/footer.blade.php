@@ -15,18 +15,23 @@
 </footer>
 <!--end::Footer-->
 
-<!-- Styles pour un footer moderne et interactif -->
+<!-- Styles pour un footer moderne et simple -->
 <style>
     .app-footer {
-        background-color: #2c3e50; /* Fond sombre */
-        color: #ecf0f1; /* Texte clair */
+        background-color: #ffffff; /* Fond blanc */
+        color: #333333; /* Texte sombre */
         padding: 20px;
         text-align: center;
         font-size: 14px;
-        border-top: 3px solid #3498db; /* Bordure bleue en haut */
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Ombre portée */
+        border-top: 1px solid #e0e0e0; /* Bordure légère en haut */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Ombre subtile */
         position: relative;
         overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .app-footer:hover {
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée au survol */
     }
 
     .app-footer a {
@@ -49,7 +54,7 @@
         top: 0;
         left: -100%;
         width: 100%;
-        height: 3px;
+        height: 2px;
         background: linear-gradient(90deg, transparent, #3498db, transparent);
         animation: slide 3s linear infinite;
     }
@@ -65,5 +70,6 @@
 
     .app-footer .float-end {
         font-style: italic;
+        color: #777777; /* Texte secondaire */
     }
 </style>
