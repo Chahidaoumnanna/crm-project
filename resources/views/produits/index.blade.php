@@ -94,26 +94,26 @@
         </div>
     </div>
 
-    <!-- Script JavaScript pour la recherche dynamique -->
+    <!-- Script JavaScript pour la recherche dynamique par nom et code barre -->
     <script>
         function filterProducts() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase(); // Récupère le terme de recherche
+            const searchInput = document.getElementById('searchInput').value.trim().toLowerCase(); // Récupère la valeur de recherche
             const rows = document.querySelectorAll('#produitsTableBody tr'); // Récupère toutes les lignes du tableau
 
             rows.forEach(row => {
-                const productName = row.querySelector('td:nth-child(3)').textContent.toLowerCase(); // Nom du produit
-                const productCode = row.querySelector('td:nth-child(2)').textContent.toLowerCase(); // Code du produit
-                const productCodeBar = row.querySelector('td:nth-child(4)').textContent.toLowerCase(); // Code-barres du produit
+                const productName = row.querySelector('td:nth-child(3)')?.textContent.toLowerCase() || ""; // Nom du produit
+                const productCode = row.querySelector('td:nth-child(2)')?.textContent.toLowerCase() || ""; // Code du produit
+                const productCodeBar = row.querySelector('td:nth-child(4)')?.textContent.toLowerCase() || ""; // Code-barres
 
-                // Vérifie si le produit correspond aux critères de recherche
+                // Vérifie si l'un des champs correspond au texte recherché
                 const matches = productName.includes(searchInput) || productCode.includes(searchInput) || productCodeBar.includes(searchInput);
 
-                // Affiche ou masque la ligne en fonction des critères de recherche
-                row.style.display = matches ? '' : 'none';
+                row.style.display = matches ? '' : 'none'; // Affiche ou masque la ligne
             });
         }
 
-        // Écoute les changements dans le chap de recherche
-        document.getElementById('msearchInput').addEventListener('input', filterProducts);
+        // Ajoute un écouteur d'événements sur l'input pour la recherche en temps réel
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
     </script>
+//
 @endsection

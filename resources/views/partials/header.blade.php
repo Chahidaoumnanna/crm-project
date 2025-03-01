@@ -1,104 +1,115 @@
-<!--begin::Header-->
-<nav class="app-header navbar navbar-expand bg-body">
-    <!--begin::Container-->
+<style>
+    .custom-nav {
+        background-color: #f8f9fa !important; /* Fond clair */
+        color: #343a40 !important; /* Texte gris foncé */
+    }
+    .custom-nav .nav-link,
+    .custom-nav .nav-link i {
+        color: #495057 !important; /* Gris foncé pour icônes */
+    }
+    .custom-nav .nav-link:hover {
+        color: #007bff !important; /* Bleu moderne au survol */
+    }
+    .dark-mode {
+        background-color: #e9ecef !important; /* Fond gris clair */
+        color: #495057 !important; /* Texte foncé */
+    }
+    .dropdown-menu {
+        background-color: #ffffff !important; /* Fond blanc pour le menu utilisateur */
+    }
+    .dropdown-menu a {
+        color: #343a40 !important; /* Texte gris foncé */
+    }
+    .dropdown-menu a:hover {
+        background-color: #f1f3f5 !important; /* Survol plus doux */
+    }
+</style>
+
+<nav class="app-header navbar navbar-expand bg-light shadow-sm">
     <div class="container-fluid">
-        <!--begin::Start Navbar Links-->
-        <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+        <!-- Navbar gauche -->
+        <ul class="nav nav-pills nav-fill flex-column flex-sm-row text-dark" id="tabs-text">
             <li class="nav-item me-2">
-                <a class="nav-link mb-sm-3 mb-md-0" data-lte-toggle="sidebar" href="#" role="button">
+                <a class="nav-link mb-sm-3 mb-md-0 text-dark" data-lte-toggle="sidebar" href="#">
                     <i class="bi bi-list"></i>
                 </a>
-
-
+            </li>
         </ul>
-        <!--end::Start Navbar Links-->
-        <!--begin::End Navbar Links-->
+
+        <!-- Navbar droite -->
         <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
+            <!-- Recherche -->
             <li class="nav-item navbar-search">
                 <form class="d-flex">
                     <div class="input-group">
-                        <span class="input-group-text search-icon">
-                            <i class="bi bi-search"></i>
+                        <span class="input-group-text bg-white border-0">
+                            <i class="bi bi-search text-dark"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Rechercher..." aria-label="Rechercher" />
+                        <input type="text" class="form-control border-0" placeholder="Rechercher..." />
                     </div>
                 </form>
             </li>
-           <!--begin::Navbar DarkMode-->
-           <li  class="nav-item">
-            <button id="theme-toggle" class="btn btn-secondary dark-mode">
-               <i class="bi bi-moon" id="theme-icon"></i> <!-- Icône pour le dark mode -->
-            </button>
+
+            <!-- Mode sombre -->
+            <li class="nav-item">
+                <button id="theme-toggle" class="btn btn-light border">
+                    <i class="bi bi-moon text-dark" id="theme-icon"></i>
+                </button>
             </li>
-           <!--end::Navbar DarkMode-->
-            <li class="nav-item ">
-                <a class="nav-link fullscreen-toggle bg-dark-subtle" href="#" data-lte-toggle="fullscreen">
+
+            <!-- Plein écran -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#" data-lte-toggle="fullscreen">
                     <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-                    <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
+                    <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
                 </a>
             </li>
-            <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
+
+            <!-- Menu utilisateur -->
             <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center bg-light text-dark rounded-pill p-2" data-bs-toggle="dropdown">
-                    <img src="{{ asset('images/Useravatar.jpg') }}" class="user-image rounded-circle shadow" alt="User Image" />
-                    <span class="d-none d-md-inline ms-2">Admin</span>
-                    <i class="bi bi-chevron-down ms-1"></i> <!-- Icône flèche -->
+                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center bg-white border rounded-pill p-2" data-bs-toggle="dropdown">
+                    <img src="{{ asset('images/Useravatar.jpg') }}" class="user-image rounded-circle shadow" alt="User Image" width="40" height="40"/>
+                    <span class="d-none d-md-inline ms-2 text-dark">Admin</span>
+                    <i class="bi bi-chevron-down ms-1 text-dark"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow-lg">
-                    <!--begin::User Image-->
-                    <li class="user-header bg-gradient-primary-to-secondary text-center text-white py-4">
-                        <img src="{{ asset('images/Useravatar.jpg') }}" class="rounded-circle shadow" alt="User Image"
-                            width="80" height="80" />
-                        <p class="mt-2 mb-0">Alexander Pierce</p>
-                        <small class="text-white-50">Web Developer</small>
-                        <small class="d-block text-white-50">Member since Nov. 2023</small>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li class="user-header bg-light text-center py-3">
+                        <img src="{{ asset('images/Useravatar.jpg') }}" class="rounded-circle shadow" width="70" height="70" />
+                        <p class="mt-2 mb-0 text-dark">Alexander Pierce</p>
+                        <small class="text-muted">Web Developer</small>
                     </li>
-                    <!--end::User Image-->
-                    <!--begin::Menu Body-->
-                    <li class="user-body px-3 py-2">
-                        <!--begin::Row-->
+                    <li class="user-body p-3">
                         <div class="row text-center">
                             <div class="col-4">
                                 <a href="#" class="text-decoration-none text-dark">
-                                    <i class="bi bi-people fs-4"></i> <!-- Icône followers -->
+                                    <i class="bi bi-people fs-5"></i>
                                     <p class="mb-0 small">Followers</p>
                                 </a>
                             </div>
                             <div class="col-4">
                                 <a href="#" class="text-decoration-none text-dark">
-                                    <i class="bi bi-graph-up fs-4"></i> <!-- Icône sales -->
+                                    <i class="bi bi-graph-up fs-5"></i>
                                     <p class="mb-0 small">Sales</p>
                                 </a>
                             </div>
                             <div class="col-4">
                                 <a href="#" class="text-decoration-none text-dark">
-                                    <i class="bi bi-person-plus fs-4"></i> <!-- Icône friends -->
+                                    <i class="bi bi-person-plus fs-5"></i>
                                     <p class="mb-0 small">Ventes</p>
                                 </a>
                             </div>
                         </div>
-                        <!--end::Row-->
                     </li>
-                    <!--end::Menu Body-->
-                    <!--begin::Menu Footer-->
                     <li class="user-footer d-flex justify-content-between px-3 py-2">
                         <a href="#" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-person-circle me-1"></i> Profile
+                            <i class="bi bi-person-circle me-1"></i> Profil
                         </a>
                         <a href="#" class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-box-arrow-right me-1"></i> Sign out
+                            <i class="bi bi-box-arrow-right me-1"></i> Déconnexion
                         </a>
                     </li>
-                    <!--end::Menu Footer-->
                 </ul>
             </li>
-            <!--end::User Menu Dropdown-->
-            <!--end::User Menu Dropdown-->
         </ul>
-        <!--end::End Navbar Links-->
     </div>
-    <!--end::Container-->
 </nav>
-<!--end::Header-->

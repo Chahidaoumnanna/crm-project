@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\Api\BonLivraisonController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Api\BonLivraisonItemController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\Api\ProduitController;
 use App\Http\Controllers\Api\PaiementController;
-use App\Http\Controllers\Api\BonLivraisonItemController;
+use App\Http\Controllers\Api\ProduitController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -65,4 +67,5 @@ Route::resource('clients', ClientController::class);
 Route::get('/api/paimentes/{idBonLivraison?}', [PaiementController::class, 'apiPaiementes']);
 Route::post( '/api/paimentes',[PaiementController::class,'apiCreatePaiemente']);
 
-//
+//ticket
+Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.index');

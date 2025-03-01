@@ -6,7 +6,7 @@
         <a class='brand-link d-flex align-items-center text-decoration-none' href='{{ route('home') }}'>
             <!--begin::Brand Image-->
             <img
-                src="{{ asset('images/logo.png') }}"
+                src="{{ asset('images/LOGO.jpg') }}"
                 alt="AdminLTE Logo"
                 class="brand-image img-fluid opacity-90 shadow-sm"
             />
@@ -18,16 +18,12 @@
         <!--end::Brand Link-->
     </div>
     <!--end::Sidebar Brand-->
+
     <!--begin::Sidebar Wrapper-->
     <div class="sidebar-wrapper p-3">
         <nav class="mt-2">
             <!--begin::Sidebar Menu-->
-            <ul
-                class="nav sidebar-menu flex-column"
-                data-lte-toggle="treeview"
-                role="menu"
-                data-accordion="false"
-            >
+            <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                 <li class="nav-item mb-2">
                     <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='{{ route('home') }}'>
                         <i class="nav-icon bi bi-house me-2"></i>
@@ -39,48 +35,25 @@
                         <i class="nav-icon bi bi-person me-2"></i>
                         <p class="mb-0">Client</p>
                     </a>
-    </li>
+                </li>
                 <li class="nav-item mb-2">
                     <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='{{ route('bonlivraison.index') }}'>
-                        <i class="nav-icon bi bi-person me-2"></i>
+                        <i class="nav-icon bi bi-receipt me-2"></i> <!-- Icône changée -->
                         <p class="mb-0">Bon de livraison</p>
                     </a>
-                </li> <li class="nav-item mb-2">
+                </li>
+                <li class="nav-item mb-2">
                     <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='{{ route('produits.index') }}'>
-                        <i class="nav-icon bi bi-person me-2"></i>
+                        <i class="nav-icon bi bi-box-seam me-2"></i> <!-- Icône changée -->
                         <p class="mb-0">Produit</p>
                     </a>
                 </li>
-
-{{--                <li class="nav-item">--}}
-{{--                    <a href="#" class="nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded">--}}
-{{--                        <i class="bi-box me-2"></i>--}}
-{{--                        <p class="mb-0">--}}
-{{--                            Stock--}}
-{{--                            <i class="nav-arrow bi bi-chevron-right ms-auto"></i>--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                    <ul class="nav nav-treeview">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='/dist/pages/'>--}}
-{{--                                <i class="bi-cart me-2"></i>--}}
-{{--                                <p class="mb-0">Produit</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='/dist/pages/index2'>--}}
-{{--                                <i class="bi-hash me-2"></i>--}}
-{{--                                <p class="mb-0">Unité</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href='{{route('bonlivraison.index')  }}'>--}}
-{{--                                <i class="bi-box me-2"></i>--}}
-{{--                                <p class="mb-0">Bon De Livraison</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
+                <li class="nav-item mb-2">
+                    <a class='nav-link d-flex align-items-center text-dark text-decoration-none p-2 rounded' href="{{ route('ticket.index') }}">
+                        <i class="nav-icon bi bi-ticket-perforated me-2"></i>
+                        <p class="mb-0">Tickets</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

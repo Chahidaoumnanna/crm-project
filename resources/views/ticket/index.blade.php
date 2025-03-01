@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket</title>
+@extends('base')
+
+@section('title', 'Tickets')
+
+@section('bodyTitle', 'Tickets')
+
+@section('body')
+
+
+
     <style>
         body { font-family: Arial, sans-serif; text-align: center; }
         .ticket { width: 300px; margin: auto; padding: 10px; border: 1px dashed black; }
@@ -14,17 +18,16 @@
         .total { font-weight: bold; }
         .print-btn { margin-top: 10px; }
     </style>
-</head>
-<body>
+
 
 <div class="ticket">
     <div class="header">Novicore</div>
     <p>Hay Salam<br>Tél: 0707023780</p>
     <hr>
     <div class="details">
-        <p><strong>N° Avoir :</strong> {{ $bonLivraison->ref }}</p>
-        <p><strong>Date :</strong> {{ $bonLivraison->docAt }}</p>
-        <p><strong>Client :</strong> {{ $client->name }}</p>
+        <p><strong>N° Avoir :</strong> 44</p>
+        <p><strong>Date :</strong> 2025-02-28</p>
+        <p><strong>Client :</strong> Johari</p>
     </div>
     <hr>
 
@@ -37,26 +40,25 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($items as $item)
             <tr>
-                <td>{{ $item->produit->nom }}</td>
-                <td>{{ $item->qte }}</td>
-                <td>{{ number_format($item->prixUnitaire, 2) }} DH</td>
+                <td>Chocolete</td>
+                <td>4</td>
+                <td>141 DH</td>
             </tr>
-        @endforeach
         </tbody>
     </table>
 
     <hr>
-    <p class="total">Total : {{ number_format($bonLivraison->totale, 2) }} DH</p>
-    <p><strong>Espèce :</strong> {{ number_format($bonLivraison->totale, 2) }} DH</p>
+    <p class="total">Total : 142 DH</p>
+    <p><strong>Espèce :</strong> 142 DH</p>
 
     <div class="footer">
         <p>Merci pour votre visite et à bientôt.</p>
     </div>
 
-    <button class="print-btn" onclick="window.print()">🖨️ Imprimer</button>
+    <button class="print-btn btn btn-outline-primary" onclick="window.print()">🖨️ Imprimer</button>
 </div>
 
-</body>
-</html>
+
+
+@endsection

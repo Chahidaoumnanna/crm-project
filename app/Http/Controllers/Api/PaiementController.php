@@ -21,8 +21,8 @@ class PaiementController extends Controller
     /**
      * Ajouter un nouveau paiement.
      */
-    public function store(StorePaiementRequest $request)
-    {
+        public function store(StorePaiementRequest $request)
+        {
         $paiement = Paiement::create($request->validated());
 
         return response()->json([
