@@ -1,30 +1,3 @@
-<style>
-    .custom-nav {
-        background-color: #f8f9fa !important; /* Fond clair */
-        color: #343a40 !important; /* Texte gris foncé */
-    }
-    .custom-nav .nav-link,
-    .custom-nav .nav-link i {
-        color: #495057 !important; /* Gris foncé pour icônes */
-    }
-    .custom-nav .nav-link:hover {
-        color: #007bff !important; /* Bleu moderne au survol */
-    }
-    .dark-mode {
-        background-color: #e9ecef !important; /* Fond gris clair */
-        color: #495057 !important; /* Texte foncé */
-    }
-    .dropdown-menu {
-        background-color: #ffffff !important; /* Fond blanc pour le menu utilisateur */
-    }
-    .dropdown-menu a {
-        color: #343a40 !important; /* Texte gris foncé */
-    }
-    .dropdown-menu a:hover {
-        background-color: #f1f3f5 !important; /* Survol plus doux */
-    }
-</style>
-
 <nav class="app-header navbar navbar-expand bg-light shadow-sm">
     <div class="container-fluid">
         <!-- Navbar gauche -->
@@ -43,7 +16,7 @@
                 <form class="d-flex">
                     <div class="input-group">
                         <span class="input-group-text bg-white border-0">
-                            <i class="bi bi-search text-dark"></i>
+                            <i class="bi bi-search"></i>
                         </span>
                         <input type="text" class="form-control border-0" placeholder="Rechercher..." />
                     </div>
@@ -53,13 +26,13 @@
             <!-- Mode sombre -->
             <li class="nav-item">
                 <button id="theme-toggle" class="btn btn-light border">
-                    <i class="bi bi-moon text-dark" id="theme-icon"></i>
+                    <i class="bi bi-moon" id="theme-icon"></i>
                 </button>
             </li>
 
             <!-- Plein écran -->
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#" data-lte-toggle="fullscreen">
+                <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                     <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                     <i data-lte-icon="minimize" class="bi bi-fullscreen-exit d-none"></i>
                 </a>
@@ -70,10 +43,10 @@
                 <a href="#" class="nav-link dropdown-toggle d-flex align-items-center bg-white border rounded-pill p-2" data-bs-toggle="dropdown">
                     <img src="{{ asset('images/Useravatar.jpg') }}" class="user-image rounded-circle shadow" alt="User Image" width="40" height="40"/>
                     <span class="d-none d-md-inline ms-2 text-dark">Admin</span>
-                    <i class="bi bi-chevron-down ms-1 text-dark"></i>
+                    <i class="bi bi-chevron-down ms-1"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end shadow">
-                    <li class="user-header bg-light text-center py-3">
+                    <li class="user-header  text-center py-3" style="background-color: #0B162C">
                         <img src="{{ asset('images/Useravatar.jpg') }}" class="rounded-circle shadow" width="70" height="70" />
                         <p class="mt-2 mb-0 text-dark">Alexander Pierce</p>
                         <small class="text-muted">Web Developer</small>
@@ -113,3 +86,58 @@
         </ul>
     </div>
 </nav>
+<style>
+    /* Couleur des icônes par défaut */
+    .navbar-nav .nav-link i,
+    .navbar-nav .nav-link span,
+    .navbar-search .input-group-text i,
+    #theme-toggle i,
+    .nav-link[data-lte-toggle="fullscreen"] i,
+    .user-menu .dropdown-menu i {
+        color: #0B162C !important; /* Couleur des icônes */
+        transition: color 0.3s ease; /* Transition fluide */
+    }
+
+    /* Effet de survol pour les icônes */
+    .navbar-nav .nav-link:hover i,
+    .navbar-nav .nav-link:hover span,
+    .navbar-search .input-group-text:hover i,
+    #theme-toggle:hover i,
+    .nav-link[data-lte-toggle="fullscreen"]:hover i,
+    .user-menu .dropdown-menu a:hover i {
+        color: #007bff !important; /* Couleur au survol */
+    }
+
+    /* Fond clair du navbar */
+    .app-header {
+        background-color: #f8f9fa !important; /* Fond clair */
+    }
+
+    /* Style pour le menu utilisateur */
+    .user-menu .dropdown-menu {
+        background-color: #ffffff !important; /* Fond blanc */
+    }
+    .user-menu .dropdown-menu a {
+        color: #343a40 !important; /* Texte gris foncé */
+    }
+    .user-menu .dropdown-menu a:hover {
+        background-color: #f1f3f5 !important; /* Survol doux */
+    }
+</style>
+<style>
+    /* Couleur des icônes par défaut */
+    #tabs-text .nav-link i {
+        color: #0B162C !important; /* Couleur des icônes */
+        transition: color 0.3s ease; /* Transition fluide */
+    }
+
+    /* Effet de survol pour les icônes */
+    #tabs-text .nav-link:hover i {
+        color: #007bff !important; /* Couleur au survol */
+    }
+
+    /* Fond clair du navbar */
+    #tabs-text {
+        background-color: #f8f9fa !important; /* Fond clair */
+    }
+</style>

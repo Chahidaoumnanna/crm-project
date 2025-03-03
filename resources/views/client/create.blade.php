@@ -1,12 +1,15 @@
 @extends('base')
 
-@section('title', 'Create client')
+@section('title', 'Créer un client')
 
-@section('bodyTitle', 'Create client')
+@section('bodyTitle', 'Créer un client')
 
 @section('body')
-    <div class="p-4 bg-light" data-bs-theme="{{ session('theme', 'light') }}">
-        <!-- Toastr Notification -->
+    <div class="container mt-5">
+        <a href="{{ route('clients.index') }}" class="btn btn-outline-secondary mb-4">
+            <i class="fas fa-arrow-left"></i> Annuler
+        </a>
+
         @if(session('success'))
             <script>
                 toastr.success("{{ session('success') }}", "Succès", {
@@ -18,80 +21,82 @@
             </script>
         @endif
 
-        <form action="{{ route('clients.store') }}" method="post">
-            @csrf
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
-                        <label class="form-label">Name</label>
+        <div class="card shadow-lg p-4">
+            <form action="{{ route('clients.store') }}" method="POST">
+                @csrf
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Nom</label>
+                        <input type="text" class="form-control rounded-3" name="name" value="{{ old('name') }}" required>
                         @error('name')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <input type="text" class="form-control" id="code" name="code" value="{{ old('code') }}">
-                        <label class="form-label">Code</label>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Code</label>
+                        <input type="text" class="form-control rounded-3" name="code" value="{{ old('code') }}" required>
                         @error('code')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
-                        <label class="form-label">Email</label>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Email</label>
+                        <input type="email" class="form-control rounded-3" name="email" value="{{ old('email') }}" required>
                         @error('email')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
-                        <label class="form-label">Phone</label>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Téléphone</label>
+                        <input type="text" class="form-control rounded-3" name="phone" value="{{ old('phone') }}" required>
                         @error('phone')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
-                        <label class="form-label">Address</label>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Adresse</label>
+                        <input type="text" class="form-control rounded-3" name="address" value="{{ old('address') }}" required>
                         @error('address')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group input-group-outline my-3">
-                        <select class="form-control" id="type" name="type">
-                            <option value="">Select type</option>
-                            <option value="individual">Individual</option>
-                            <option value="company">Company</option>
-                            <option value="other">Other</option>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Type</label>
+                        <select class="form-select rounded-3" name="type" required>
+                            <option value="">Sélectionner un type</option>
+                            <option value="individual" {{ old('type') == 'individual' ? 'selected' : '' }}>Individu</option>
+                            <option value="company" {{ old('type') == 'company' ? 'selected' : '' }}>Entreprise</option>
+                            <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Autre</option>
                         </select>
-                        <label class="form-label">Type</label>
                         @error('type')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger small">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button> <a href="{{ route('clients.index') }}" class="btn btn-danger">Annuler</a></button>
-
-        </form>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 rounded-3 shadow-sm">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
