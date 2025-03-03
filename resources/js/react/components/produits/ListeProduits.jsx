@@ -1,124 +1,10 @@
-// import React, { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {deleteProduct , updateTotalTTC} from "../../redux/crudActionSlice.js";
-// import {calculateValues ,calculateTotals} from "./Calcule.jsx";
 //
-// const ListeProduits = ({ handleEdit }) => {
-//     const dispatch = useDispatch();
-//     const listeproducts = useSelector((state) => state.products.listeproducts);
-//     const isTvaActive = useSelector((state) => state.activation.isTvaActive);
-//     const isRemiseActive = useSelector((state) => state.activation.isRemiseActive);
-//     const totalTTC = useSelector((state) => state.products.totalTTC);
-//
-//     // Calculer les totaux
-//     const { totalHT, totalTVA, totalTTC: calculatedTotalTTC } = calculateTotals(
-//         listeproducts,
-//         isTvaActive,
-//         isRemiseActive
-//     );
-//
-//     // Mettre à jour totalTTC dans Redux après le rendu
-//     useEffect(() => {
-//         dispatch(updateTotalTTC(parseFloat(calculatedTotalTTC)));
-//     }, [dispatch, calculatedTotalTTC]);
-//
-//     return (
-//         <div className="container mt-4">
-//             <div className="card shadow-sm">
-//                 <div className="card-header bg-info text-white">
-//                     <h5 className="card-title mb-0">Liste des produits</h5>
-//                 </div>
-//                 <div className="container">
-//                     <div className="row">
-//                         <div className="col" style={{ color: "black" }}>
-//                             Totale HT : <span style={{ color: 'red' }}>{totalHT}</span>
-//                         </div>
-//                         {isTvaActive && (
-//                             <div className="col" style={{ color: "black" }}>
-//                                 Totale TVA : <span style={{ color: 'red' }}>{totalTVA} %</span>
-//                             </div>
-//                         )}
-//                         <div className="col" style={{ color: "black" }}>
-//                             Totale TTC : <span style={{ color: 'red' }}>{totalTTC.toFixed(2)}</span>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className="card-body">
-//                     <div className="row">
-//                         <div className="col-12">
-//                             <div className="table-responsive">
-//                                 <table className="table table-hover table-bordered w-100">
-//                                     <thead className="thead-dark">
-//                                     <tr>
-//                                         <th scope="col">Référence</th>
-//                                         <th scope="col">Article</th>
-//                                         {isTvaActive && <th scope="col">TVA (%)</th>}
-//                                         {isRemiseActive && <th scope="col">Remise (%)</th>}
-//                                         <th scope="col">Quantité</th>
-//                                         {isTvaActive && <th scope="col">Prix HT</th>}
-//                                         {isTvaActive ? <th scope="col">Prix TTC</th> : <th scope="col">Prix</th>}
-//                                         <th scope="col">Total</th>
-//                                         <th scope="col">Actions</th>
-//                                     </tr>
-//                                     </thead>
-//                                     <tbody>
-//                                     {listeproducts.length === 0 ? (
-//                                         <tr>
-//                                             <td colSpan={isTvaActive && isRemiseActive ? 8 : 6} className="text-center">
-//                                                 <h4 className="text-muted">Aucun produit disponible</h4>
-//                                             </td>
-//                                         </tr>
-//                                     ) : (
-//                                         listeproducts.map((pro, index) => {
-//                                             const { pht, total } = calculateValues(pro, isTvaActive, isRemiseActive);
-//
-//                                             return (
-//                                                 <tr key={index}>
-//                                                     <td>{pro.code}</td>
-//                                                     <td>{pro.name}</td>
-//                                                     {isTvaActive && <td>{pro.tva}</td>}
-//                                                     {isRemiseActive && <td>{pro.remise}</td>}
-//                                                     <td>{pro.qte}</td>
-//                                                     {isTvaActive && <td>{pht}</td>}
-//                                                     <td>{pro.prixVente}</td>
-//                                                     <td>{total}</td>
-//                                                     <td>
-//                                                         <button
-//                                                             className="btn btn-sm btn-warning me-2"
-//                                                             onClick={() => handleEdit(pro)}
-//                                                         >
-//                                                             <i className="fas fa-edit"></i> Modifier
-//                                                         </button>
-//                                                         <button
-//                                                             className="btn btn-sm btn-danger"
-//                                                             onClick={() => dispatch(deleteProduct(pro.id))}
-//                                                         >
-//                                                             <i className="fas fa-trash"></i> Supprimer
-//                                                         </button>
-//                                                     </td>
-//                                                 </tr>
-//                                             );
-//                                         })
-//                                     )}
-//                                     </tbody>
-//                                 </table>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-//
-// export default ListeProduits;
-
 //
 // import React, { useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
+// import { Table, Button, Badge } from 'react-bootstrap';
 // import { deleteProduct, updateTotalTTC } from "../../redux/crudActionSlice.js";
 // import { calculateValues, calculateTotals } from "./Calcule.jsx";
-// import { FaTrash, FaPen } from "react-icons/fa";
 //
 // const ListeProduits = ({ handleEdit }) => {
 //     const dispatch = useDispatch();
@@ -140,66 +26,100 @@
 //     }, [dispatch, calculatedTotalTTC]);
 //
 //     return (
-//         <div className="container mt-4">
-//             <div className="card shadow-sm">
+//         <div className="mb-4">
+//             <div className="bg-white p-3 rounded">
+//                 <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+//                     <h5 className="mb-0">Liste des produits :</h5>
+//                     <div className="d-flex align-items-center gap-4 p-3 rounded shadow-sm"
+//                          style={{ backgroundColor: '#f8f9fa', border: '1px solid #ddd' }}>
 //
-//                 <div className="card-footer bg-light text-center">
-//                     <strong>Total HT :</strong> <span className="text-danger">{totalHT}</span> &nbsp; | &nbsp;
-//                     {isTvaActive && (<><strong>Total TVA :</strong> <span className="text-danger">{totalTVA} %</span> &nbsp; | &nbsp;</>)}
-//                     <strong>Total TTC :</strong> <span className="text-danger">{totalTTC.toFixed(2)}</span>
-//                 </div>
+//                         <div>
+//                             <span className="fw-semibold text-muted me-2">Total HT:</span>
+//                             <span className="px-3 py-1 rounded text-white"
+//                                   style={{ backgroundColor: '#88bde4', fontWeight: 'bold' }}>
+//             {totalHT}
+//         </span>
+//                         </div>
 //
-//                 <div className="card-body">
-//                     <table className="table table-bordered text-center">
-//                         <thead className="table-dark">
-//                         <tr>
-//                             <th>Référence</th>
-//                             <th>Article</th>
-//                             {isTvaActive && <th>TVA (%)</th>}
-//                             {isRemiseActive && <th>Remise (%)</th>}
-//                             <th>Quantité</th>
-//                             {isTvaActive && <th>Prix HT</th>}
-//                             <th>{isTvaActive ? "Prix TTC" : "Prix"}</th>
-//                             <th>Total</th>
-//                             <th>Actions</th>
-//                         </tr>
-//                         </thead>
-//                         <tbody>
-//                         {listeproducts.length === 0 ? (
-//                             <tr>
-//                                 <td colSpan={isTvaActive && isRemiseActive ? 8 : 6} className="text-muted">
-//                                     Aucun produit disponible
-//                                 </td>
-//                             </tr>
-//                         ) : (
-//                             listeproducts.map((pro, index) => {
-//                                 const { pht, total } = calculateValues(pro, isTvaActive, isRemiseActive);
-//                                 return (
-//                                     <tr key={index}>
-//                                         <td>{pro.code}</td>
-//                                         <td>{pro.name}</td>
-//                                         {isTvaActive && <td>{pro.tva}</td>}
-//                                         {isRemiseActive && <td>{pro.remise}</td>}
-//                                         <td>{pro.qte}</td>
-//                                         {isTvaActive && <td>{pht}</td>}
-//                                         <td>{pro.prixVente}</td>
-//                                         <td>{total}</td>
-//                                         <td>
-//                                             <button className="btn btn-warning btn-sm me-2" onClick={() => handleEdit(pro)}>
-//                                                 <FaPen />
-//                                             </button>
-//                                             <button className="btn btn-danger btn-sm" onClick={() => dispatch(deleteProduct(pro.id))}>
-//                                                 <FaTrash />
-//                                             </button>
-//                                         </td>
-//                                     </tr>
-//                                 );
-//                             })
+//                         {isTvaActive && (
+//                             <div>
+//                                 <span className="fw-semibold text-muted me-2">Total TVA:</span>
+//                                 <span className="px-3 py-1 rounded text-white"
+//                                       style={{ backgroundColor: '#88bde4', fontWeight: 'bold' }}>
+//                 {totalTVA} %
+//             </span>
+//                             </div>
 //                         )}
-//                         </tbody>
-//                     </table>
+//
+//                         <div>
+//                             <span className="fw-semibold text-muted me-2">Total TTC:</span>
+//                             <span className="px-3 py-1 rounded text-white"
+//                                   style={{ backgroundColor: '#88bde4' ,color:'red'}}>
+//             {totalTTC.toFixed(2)}
+//         </span>
+//                         </div>
+//                     </div>
+//
 //                 </div>
 //
+//                 <Table responsive hover bordered className="mb-0">
+//                     <thead className="thead-light">
+//                     <tr >
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>Référence</th>
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>Article</th>
+//                         {isTvaActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>TVA (%)</th>}
+//                         {isRemiseActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>Remise (%)</th>}
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>Quantité</th>
+//                         {isTvaActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>Prix HT</th>}
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>{isTvaActive ? "Prix TTC" : "Prix"}</th>
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>Total</th>
+//                         <th style={{ backgroundColor: '#003366', color: 'white' }}>Actions</th>
+//                     </tr>
+//                     </thead>
+//                     <tbody>
+//                     {listeproducts.length === 0 ? (
+//                         <tr>
+//                             <td colSpan={isTvaActive && isRemiseActive ? 9 : (isTvaActive || isRemiseActive ? 8 : 7)} className="text-center py-4">
+//                                 <p className="text-muted mb-0">Aucun produit disponible</p>
+//                             </td>
+//                         </tr>
+//                     ) : (
+//                         listeproducts.map((pro, index) => {
+//                             const { pht, total } = calculateValues(pro, isTvaActive, isRemiseActive);
+//
+//                             return (
+//                                 <tr key={index}>
+//                                     <td>{pro.code}</td>
+//                                     <td>{pro.name}</td>
+//                                     {isTvaActive && <td>{pro.tva}</td>}
+//                                     {isRemiseActive && <td>{pro.remise}</td>}
+//                                     <td>{pro.qte}</td>
+//                                     {isTvaActive && <td>{pht}</td>}
+//                                     <td>{pro.prixVente}</td>
+//                                     <td>{total}</td>
+//                                     <td>
+//                                         <Button
+//                                             variant="outline-warning"
+//                                             size="sm"
+//                                             className="me-2"
+//                                             onClick={() => handleEdit(pro)}
+//                                         >
+//                                             Modifier
+//                                         </Button>
+//                                         <Button
+//                                             variant="outline-danger"
+//                                             size="sm"
+//                                             onClick={() => dispatch(deleteProduct(pro.id))}
+//                                         >
+//                                             Supprimer
+//                                         </Button>
+//                                     </td>
+//                                 </tr>
+//                             );
+//                         })
+//                     )}
+//                     </tbody>
+//                 </Table>
 //             </div>
 //         </div>
 //     );
@@ -208,10 +128,14 @@
 // export default ListeProduits;
 
 
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteProduct, updateTotalTTC } from "../../redux/crudActionSlice.js";
+import { Table } from 'react-bootstrap';
+import { FaEdit, FaTrash, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { deleteProduct, updateTotalTTC, moveProductUp, moveProductDown } from "../../redux/crudActionSlice.js";
 import { calculateValues, calculateTotals } from "./Calcule.jsx";
+
 const ListeProduits = ({ handleEdit }) => {
     const dispatch = useDispatch();
     const listeproducts = useSelector((state) => state.products.listeproducts);
@@ -219,11 +143,11 @@ const ListeProduits = ({ handleEdit }) => {
     const isRemiseActive = useSelector((state) => state.activation.isRemiseActive);
     const totalTTC = useSelector((state) => state.products.totalTTC);
 
+    const [hoveredRow, setHoveredRow] = useState(null);
+
     // Calculer les totaux
     const { totalHT, totalTVA, totalTTC: calculatedTotalTTC } = calculateTotals(
-        listeproducts,
-        isTvaActive,
-        isRemiseActive
+        listeproducts, isTvaActive, isRemiseActive
     );
 
     // Mettre à jour totalTTC dans Redux après le rendu
@@ -232,92 +156,111 @@ const ListeProduits = ({ handleEdit }) => {
     }, [dispatch, calculatedTotalTTC]);
 
     return (
-        <div className="container mt-4">
-            <div className="card shadow-sm">
-                <div className="card-header bg-info text-white">
-                    <h5 className="card-title mb-0">Liste des produits</h5>
-                </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col" style={{ color: "black" }}>
-                            Totale HT : <span style={{ color: 'red' }}>{totalHT}</span>
+        <div className="mb-4">
+            <div className="bg-white p-3 rounded shadow-sm">
+                <div className="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                    <h5 className="mb-0">Liste des produits :</h5>
+                    <div className="d-flex align-items-center gap-4 p-3 rounded shadow-sm"
+                         style={{ backgroundColor: '#f8f9fa', border: '1px solid #ddd' }}>
+                        <div>
+                            <span className="fw-semibold text-muted me-2">Total HT:</span>
+                            <span className="px-3 py-1 rounded text-white"
+                                  style={{ backgroundColor: '#88bde4', fontWeight: 'bold' }}>
+                                {totalHT}
+                            </span>
                         </div>
+
                         {isTvaActive && (
-                            <div className="col" style={{ color: "black" }}>
-                                Totale TVA : <span style={{ color: 'red' }}>{totalTVA} %</span>
+                            <div>
+                                <span className="fw-semibold text-muted me-2">Total TVA:</span>
+                                <span className="px-3 py-1 rounded text-white"
+                                      style={{ backgroundColor: '#88bde4', fontWeight: 'bold' }}>
+                                    {totalTVA} %
+                                </span>
                             </div>
                         )}
-                        <div className="col" style={{ color: "black" }}>
-                            Totale TTC : <span style={{ color: 'red' }}>{totalTTC.toFixed(2)}</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="card-body">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="table-responsive">
-                                <table className="table table-hover table-bordered w-100">
-                                    <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col">Référence</th>
-                                        <th scope="col">Article</th>
-                                        {isTvaActive && <th scope="col">TVA (%)</th>}
-                                        {isRemiseActive && <th scope="col">Remise (%)</th>}
-                                        <th scope="col">Quantité</th>
-                                        {isTvaActive && <th scope="col">Prix HT</th>}
-                                        {isTvaActive ? <th scope="col">Prix TTC</th> : <th scope="col">Prix</th>}
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {listeproducts.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={isTvaActive && isRemiseActive ? 8 : 6} className="text-center">
-                                                <h4 className="text-muted">Aucun produit disponible</h4>
-                                            </td>
-                                        </tr>
-                                    ) : (
-                                        listeproducts.map((pro, index) => {
-                                            const { pht, total } = calculateValues(pro, isTvaActive, isRemiseActive);
 
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{pro.code}</td>
-                                                    <td>{pro.name}</td>
-                                                    {isTvaActive && <td>{pro.tva * 100}</td>}
-                                                    {isRemiseActive && <td>{pro.remise}</td>}
-                                                    <td>{pro.qte}</td>
-                                                    {isTvaActive && <td>{pht}</td>}
-                                                    <td>{pro.prixVente}</td>
-                                                    <td>{total}</td>
-                                                    <td>
-                                                        <button
-                                                            className="btn btn-sm btn-warning me-2"
-                                                            onClick={() => handleEdit(pro)}
-                                                        >
-                                                            <i className="fas fa-edit"></i> Modifier
-                                                        </button>
-                                                        <button
-                                                            className="btn btn-sm btn-danger"
-                                                            onClick={() => dispatch(deleteProduct(pro.id))}
-                                                        >
-                                                            <i className="fas fa-trash"></i> Supprimer
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })
-                                    )}
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div>
+                            <span className="fw-semibold text-muted me-2">Total TTC:</span>
+                            <span className="px-3 py-1 rounded text-white"
+                                  style={{ backgroundColor: '#88bde4', color: 'red' }}>
+                                {totalTTC.toFixed(2)}
+                            </span>
                         </div>
                     </div>
                 </div>
+
+                <Table responsive hover bordered className="mb-0">
+                    <thead className="thead-light">
+                    <tr>
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>Référence</th>
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>Article</th>
+                        {isTvaActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>TVA (%)</th>}
+                        {isRemiseActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>Remise (%)</th>}
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>Quantité</th>
+                        {isTvaActive && <th style={{ backgroundColor: '#003366', color: 'white' }}>Prix HT</th>}
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>{isTvaActive ? "Prix TTC" : "Prix"}</th>
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>Total</th>
+                        <th style={{ backgroundColor: '#003366', color: 'white' }}>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {listeproducts.length === 0 ? (
+                        <tr>
+                            <td colSpan={isTvaActive && isRemiseActive ? 9 : (isTvaActive || isRemiseActive ? 8 : 7)}
+                                className="text-center py-4">
+                                <p className="text-muted mb-0">Aucun produit disponible</p>
+                            </td>
+                        </tr>
+                    ) : (
+                        listeproducts.map((pro, index) => {
+                            const { pht, total } = calculateValues(pro, isTvaActive, isRemiseActive);
+
+                            return (
+                                <tr key={index}
+                                    onMouseEnter={() => setHoveredRow(index)}
+                                    onMouseLeave={() => setHoveredRow(null)}
+                                >
+                                    <td>{pro.code}</td>
+                                    <td>{pro.name}</td>
+                                    {isTvaActive && <td>{pro.tva}</td>}
+                                    {isRemiseActive && <td>{pro.remise}</td>}
+                                    <td>{pro.qte}</td>
+                                    {isTvaActive && <td>{pht}</td>}
+                                    <td>{pro.prixVente}</td>
+                                    <td>{total}</td>
+                                    <td>
+                                        {hoveredRow === index && (
+                                            <div className="d-flex gap-2">
+                                                <FaArrowUp
+                                                    className="text-primary cursor-pointer"
+                                                    onClick={() => dispatch(moveProductUp(index))}
+                                                />
+                                                <FaArrowDown
+                                                    className="text-primary cursor-pointer"
+                                                    onClick={() => dispatch(moveProductDown(index))}
+                                                />
+                                                <FaEdit
+                                                    className="text-warning cursor-pointer"
+                                                    onClick={() => handleEdit(pro)}
+                                                />
+                                                <FaTrash
+                                                    className="text-danger cursor-pointer"
+                                                    onClick={() => dispatch(deleteProduct(pro.id))}
+                                                />
+                                            </div>
+                                        )}
+                                    </td>
+                                </tr>
+                            );
+                        })
+                    )}
+                    </tbody>
+                </Table>
             </div>
         </div>
     );
 };
 
 export default ListeProduits;
+

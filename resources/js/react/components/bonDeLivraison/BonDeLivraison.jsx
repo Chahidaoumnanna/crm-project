@@ -216,12 +216,9 @@
 // export default BonLivraison;
 //
 
-
 import React from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
 
 const BonLivraison = () => {
     const listeProducts = useSelector((state) => state.products.listeproducts);
@@ -283,7 +280,6 @@ const BonLivraison = () => {
                     return;
                 }
 
-
                 console.log("Données des paiements envoyées:", paiementData);
 
                 await axios.post("http://127.0.0.1:8000/api/paimentes", {
@@ -293,43 +289,47 @@ const BonLivraison = () => {
             }
 
             alert("Bon de livraison enregistré avec succès !");
-            generatePDF(selectedClient, idBonDeLivraison, products);
+
+            // 4️⃣ Récupérer et afficher le PDF
+            const id = idBonDeLivraison;
+            axios.get('http://127.0.0.1:8000/pdf/${id}');
         } catch (error) {
             console.error("Erreur lors de l'enregistrement:", error.response?.data || error.message);
             alert("Une erreur est survenue lors de l'enregistrement.");
         }
     };
 
-    const generatePDF = (client, idBonDeLivraison, products) => {
-        const doc = new jsPDF();
-        doc.setFontSize(18);
-        doc.text("Bon de Livraison", 14, 20);
-
-        doc.setFontSize(12);
-        doc.text(`Réf: ${idBonDeLivraison}`, 14, 30);
-        doc.text(`Client: ${client.name}`, 14, 40);
-        doc.text(`Téléphone: ${client.phone}`, 14, 50);
-        doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 60);
-
-        const tableColumn = ["ID", "Produit", "Quantité", "Prix Unitaire", "Total"];
-        const tableRows = products.map((product, index) => [
-            index + 1,
-            product.idProduit,
-            product.qte,
-            `${product.prixUnitaire} €`,
-            `${product.qte * product.prixUnitaire} €`
-        ]);
-
-        autoTable(doc, { startY: 70, head: [tableColumn], body: tableRows });
-        doc.save(`BonLivraison_${idBonDeLivraison}.pdf`);
-    };
-
     return (
         <div>
-            <h2>Produits du Bon de Livraison</h2>
-            <button onClick={handleSaveBonLivraison}>Enregistrer Bon de Livraison</button>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                <button
+                    onClick={handleSaveBonLivraison}
+                    style={{
+                        backgroundColor: '#88bde4',
+                        color: 'white',
+                        border: 'none',
+                        padding: '10px 20px',
+                        fontSize: '16px',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#003366';
+                        e.target.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = '#88bde4';
+                        e.target.style.transform = 'scale(1)';
+                    }}
+                >
+                    Enregistrer Bon de Livraison
+                </button>
+            </div>
         </div>
     );
 };
 
 export default BonLivraison;
+

@@ -220,11 +220,15 @@ class BonLivraisonController extends Controller
 
     public function destroy(BonLivraison $bonLivraison)
     {
+        // Supprimer d'abord les éléments liés
+        BonLivraisonItem::where('idBonDeLivraison', $bonLivraison->id)->delete();
+
+        // Maintenant, supprimer le bon de livraison
         $bonLivraison->delete();
-        return response()->json([
-            'message' => 'Bon de livraison supprimé avec succès.'
-        ], 200);
+
+        return response()->json(['message' => 'Bon de livraison supprimé avec succès.']);
     }
+
 
     public function apiBonLivraison(Request $request)
     {
@@ -255,20 +259,7 @@ class BonLivraisonController extends Controller
             'totale' => 0,
         ]);
 
-//        $total = 0;
-//        foreach ($validatedData['products'] as $product) {
-//            $total += $product['qte'] * $product['prixUnitaire'];
-//
-//            BonLivraisonItem::create([
-//                'idProduit' => $product['idProduit'],
-//                'idBonDeLivraison' => $bonLivraison->id,
-//                'qte' => $product['qte'],
-//                'prixUnitaire' => $product['prixUnitaire'],
-//                'total' => $product['qte'] * $product['prixUnitaire'],
-//            ]);
-//        }
-//
-//        $bonLivraison->update(['totale' => $total]);
+
         //
 
         return response()->json(['message' => 'Bon de livraison créé avec succès', 'data' => $bonLivraison], 201);
@@ -277,6 +268,13 @@ class BonLivraisonController extends Controller
     {
         return view('bonlivraison.create'); // Assurez-vous que ce fichier existe dans resources/views/bonlivraison/
     }
+    public function edit($id)
+    {
+        $bonDeLivraison = BonLivraison::findOrFail($id);
+        $clients = Client::all();
+        return view('bonlivraison.edit', compact('bonDeLivraison', 'clients'));
+    }
+
 
 }
 

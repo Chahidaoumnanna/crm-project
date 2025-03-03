@@ -53,7 +53,6 @@ const Produits = () => {
 
     return (
         <div>
-            <h1 className="text-center">Gestion des produits</h1>
             {editingProduct ? (
                 <ModifierProduit
                     editingProduct={editingProduct}

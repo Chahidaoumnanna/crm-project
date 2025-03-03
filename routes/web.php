@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ProduitController;
 use App\Http\Controllers\Api\PaiementController;
 use App\Http\Controllers\Api\BonLivraisonItemController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TicketController;
 
 
@@ -29,6 +30,7 @@ Route::get('/produits', [ProduitController::class, 'index'])->name('produits.ind
 
 Route::resource('produits', ProduitController::class);
 Route::get('/api/produits', [ProduitController::class, 'apiProduits']);
+Route::get('/products', [ProduitController::class,'apiStore']);
 
 
 Route::get('/bon-de-livraison', [BonLivraisonController::class, 'index'])->name('bonlivraison.index');
@@ -37,6 +39,9 @@ Route::get('/bon-de-livraison/create', [BonLivraisonController::class, 'create']
 Route::get('/api/bon-de-livraison', [BonLivraisonController::class, 'apiBonLivraison'])->name('apiBonLivraison');
 
 Route::post('/api/bon-de-livraison', [BonLivraisonController::class, 'apiCreateBonLivraison'])->name('apiCreateBonLivraison');
+Route::get('/bon-de-livraison/{id}/edit', [BonLivraisonController::class, 'edit'])->name('bonlivraison.edit');
+Route::put('/bon-de-livraison/{bonDeLivraison}', [BonLivraisonController::class, 'update'])->name('bonlivraison.update');
+Route::delete('/bon-de-livraison/{bonDeLivraison}', [BonLivraisonController::class, 'destroy'])->name('bonlivraison.destroy');
 
 
 Route::get('/api/bonLivraisonItem', [BonLivraisonItemController::class, 'apiBonLivraisonItems'])->name('apiBonLivraisonItems');
@@ -54,7 +59,10 @@ Route::post( '/api/clients',[ClientController::class,'apiCreateClient']);
 
 Route::resource('clients', ClientController::class);
 
-Route::get('/pdf/{id}',[\App\Http\Controllers\PdfController::class,'print'])->name('pdf');
+
+
+Route::get('/pdf/{id}', [PdfController::class, 'print'])->name('pdf');
+
 Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.index');
 
-//
+
