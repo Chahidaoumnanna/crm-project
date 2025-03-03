@@ -1,18 +1,18 @@
 <!--begin::Sidebar-->
-<aside class="app-sidebar bg-light shadow-lg" data-bs-theme="light">
+<aside class="app-sidebar shadow-lg" style="background-color: #0B162C;" data-bs-theme="light">
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand bg-gradient-primary-to-secondary p-3">
         <!--begin::Brand Link-->
-        <a class='brand-link d-flex align-items-center text-decoration-none' href='{{ route('home') }}'>
+        <a class='brand-link d-flex align-items-center text-decoration-none m-3' href='{{ route('home') }}'>
             <!--begin::Brand Image-->
             <img
-                src="{{ asset('images/LOGO.jpg') }}"
-                alt="AdminLTE Logo"
-                class="brand-image img-fluid opacity-90 shadow-sm"
+                src="{{ asset('images/novicore-4a9d51aef45f2b931c676a92284b14e6.png') }}"
+                alt="Novicore Logo"
+                class="brand-image img-fluid opacity-100 shadow-lg"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light ms-2" style="color: #333;">CRM Project</span>
+            <span class="brand-text fw-light ms-2" style="color: #fff !important; font-size: 1.5rem; margin-bottom: 1rem;">Novicore</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -20,7 +20,7 @@
     <!--end::Sidebar Brand-->
 
     <!--begin::Sidebar Wrapper-->
-    <div class="sidebar-wrapper p-3">
+    <div class="sidebar-wrapper p-3 ">
         <nav class="mt-2">
             <!--begin::Sidebar Menu-->
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
@@ -59,5 +59,12 @@
         </nav>
     </div>
     <!--end::Sidebar Wrapper-->
+    <!--end::Sidebar-->
+
 </aside>
-<!--end::Sidebar-->
+<style>
+    .text-dark {
+        color: #fff !important; /* ou une autre couleur claire */
+    }
+</style>
+Nsdfghjkhshjsjjs

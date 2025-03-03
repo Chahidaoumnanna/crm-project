@@ -51,7 +51,7 @@
                         <th>Prix de vente</th>
                         <th>TVA</th>
                         <th>Remise</th>
-                        <th>Actions</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody id="produitsTableBody">
@@ -66,7 +66,7 @@
                             <td>{{ $produit->tva }}</td>
                             <td>{{ $produit->remise }}</td>
                             <td>
-                                <a href="{{ route('produits.edit', $produit->id) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('produits.edit', $produit->id) }}" class="btn btn-sm btn-primary btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <form action="{{ route('produits.destroy', $produit->id) }}" method="POST" class="d-inline">
@@ -76,6 +76,9 @@
                                         <i class="bi bi-trash3"></i>
                                     </button>
                                 </form>
+                                <a href="#" class="btn btn-sm btn-success">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -115,5 +118,21 @@
         // Ajoute un écouteur d'événements sur l'input pour la recherche en temps réel
         document.getElementById('searchInput').addEventListener('input', filterProducts);
     </script>
-//
+
+    <script>
+        document.querySelectorAll('#produitsTableBody tr').forEach(row => {
+            const actions = row.querySelector('td:last-child'); // Dernière colonne contenant les boutons
+
+            // Masquer les actions par défaut
+            actions.style.visibility = 'hidden';
+
+            // Afficher au survol
+            row.addEventListener('mouseenter', () => {
+                actions.style.visibility = 'visible';
+            });
+            row.addEventListener('mouseleave', () => {
+                actions.style.visibility = 'hidden';
+            });
+        });
+    </script>
 @endsection
