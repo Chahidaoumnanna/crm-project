@@ -257,14 +257,16 @@ class ClientController extends Controller
     public function apiClients(Request $request)
     {
         $search = $request->get('search');
-        $clients = Client::all();
-        if ($search) {
-            $clients = Client::where('name', 'like', '%' . $search . '%')
-                ->orWhere('phone', 'like', '%' . $search . '%')
-                ->orWhere('code', 'like', '%' . $search . '%')->get();;
-        }
+
+        $clients = Client::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%$search%")
+                ->orWhere('phone', 'like', "%$search%")
+                ->orWhere('code', 'like', "%$search%");
+        })->paginate(10); // Retourne 10 résultats par page
+
         return response()->json($clients);
     }
+
 
     public function apiCreateClient(Request $request)
     {
