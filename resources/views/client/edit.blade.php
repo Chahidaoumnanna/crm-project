@@ -21,7 +21,7 @@
 
         <div class="card shadow-lg p-4">
             <div class="card-body ">
-                <a href="{{ route('produits.index') }}" class="btn btn-danger sm mb-2">
+                <a href="{{ route('clients.index') }}" class="btn btn-danger sm mb-2">
                     <i class="bi-x "></i>
                 </a>
             <form action="{{ route('clients.update', $client->id) }}" method="POST">
@@ -71,9 +71,11 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success ">
-                    <i class="bi-save sm"></i> Enregistrer
-                </button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-sm px-4 rounded-3 shadow-sm">
+                        <i class="bi bi-save"></i> Enregistrer
+                    </button>
+                </div>
             </form>
         </div>
     </div>

@@ -19,6 +19,7 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -34,7 +35,7 @@ Route::get('/products', [ProduitController::class,'apiStore']);
 
 
 Route::get('/bon-de-livraison', [BonLivraisonController::class, 'index'])->name('bonlivraison.index');
-Route::get('/bon-de-livraison/create', [BonLivraisonController::class, 'create'])->name('bonlivraison.create'); // Ajoutez cette ligne
+Route::get('/bon-de-livraison/create', [BonLivraisonController::class, 'create'])->name('bonlivraison.create');
 
 Route::get('/api/bon-de-livraison', [BonLivraisonController::class, 'apiBonLivraison'])->name('apiBonLivraison');
 

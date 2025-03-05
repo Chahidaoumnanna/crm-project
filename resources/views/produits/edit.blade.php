@@ -81,9 +81,11 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success ">
-                        <i class="bi-save sm"></i> Enregistrer
-                    </button>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary btn-sm px-4 rounded-3 shadow-sm">
+                            <i class="bi bi-save"></i> Enregistrer
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

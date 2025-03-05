@@ -6,8 +6,8 @@
 
 @section('body')
     <div class="container mt-5">
-        <a href="{{ route('clients.index') }}" class="btn btn-outline-secondary mb-4">
-            <i class="fas fa-arrow-left"></i> Annuler
+        <a href="{{ route('clients.index') }}" class="btn btn-danger sm mb-2">
+            <i class="bi-x "></i>
         </a>
 
         @if(session('success'))
@@ -92,8 +92,8 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary btn-lg px-4 rounded-3 shadow-sm">
-                        <i class="fas fa-save"></i> Enregistrer
+                    <button type="submit" class="btn btn-primary btn-sm px-4 rounded-3 shadow-sm">
+                        <i class="bi bi-save"></i> Enregistrer
                     </button>
                 </div>
             </form>

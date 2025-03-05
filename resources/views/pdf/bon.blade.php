@@ -68,73 +68,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bon de Livraison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .header-table td {
+            border: none;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #dbead8;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif;">
+<body>
 
-<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 2px solid black;">
+<table class="header-table">
     <tr>
-        <td style="padding: 10px; text-align: center; font-weight: bold; border-bottom: 2px solid black;">
-            BON DE LIVRAISON N° : {{ $bon->id }}
-        </td>
+        <td><strong>BON DE LIVRAISON N° :</strong> {{ $bon->id }}</td>
+        <td style="text-align: right;"><strong>{{ $bon->client->name }}</strong></td>
     </tr>
 </table>
 
-<table style="width: 100%; border-collapse: collapse; border: 2px solid black; margin-bottom: 20px;">
+<table>
+    <tr class="highlight">
+        <td>Date</td>
+        <td>Devis</td>
+        <td>Nbr d’articles</td>
+    </tr>
     <tr>
-        <td style="padding: 10px; font-weight: bold;">Client :</td>
-        <td style="padding: 10px;">{{ $bon->client->name }}</td>
+        <td>{{ $bon->date }}</td>
+        <td>-</td>
+        <td>{{ count($bon->items) }}</td>
     </tr>
 </table>
 
-<table style="width: 100%; border-collapse: collapse; border: 2px solid black; text-align: center;">
-    <thead style="background-color: #e8f3dc;">
-    <tr>
-        <th style="border: 2px solid black; padding: 10px;">#</th>
-        <th style="border: 2px solid black; padding: 10px;">Produit</th>
-        <th style="border: 2px solid black; padding: 10px;">Quantité</th>
-        <th style="border: 2px solid black; padding: 10px;">Prix Unitaire</th>
-        <th style="border: 2px solid black; padding: 10px;">Total</th>
+<table>
+    <tr class="highlight">
+        <th>#</th>
+        <th>Réf</th>
+        <th>Désignation</th>
+        <th>Qté</th>
+        <th>P.U</th>
+        <th>Total</th>
     </tr>
-    </thead>
-    <tbody>
-    @foreach($bon->items as $item)
+    @foreach($bon->items as $index => $item)
         <tr>
-            <td style="border: 2px solid black; padding: 10px;">{{ $item->id }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $item->name }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $item->qte }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $item->prixUnitaire }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $item->total }}</td>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $item->ref }}</td>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->qte }}</td>
+            <td>{{ number_format($item->prixUnitaire, 2, ',', ' ') }}</td>
+            <td>{{ number_format($item->total, 2, ',', ' ') }}</td>
         </tr>
     @endforeach
-    </tbody>
 </table>
 
-<table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 2px solid black;">
+<table>
     <tr>
-        <td style="text-align: right; font-weight: bold; padding: 10px;">Total :</td>
-        <td style="text-align: right; padding: 10px;">{{ $bon->total }}</td>
+        <td style="text-align: right; font-weight: bold;">Total :</td>
+        <td style="text-align: right;">{{ number_format($bon->total, 2, ',', ' ') }}</td>
     </tr>
 </table>
 
-<h2 style="margin-top: 20px;">Détails des Paiements</h2>
-
-<table style="width: 100%; border-collapse: collapse; border: 2px solid black; text-align: center;">
-    <thead style="background-color: #e8f3dc;">
-    <tr>
-        <th style="border: 2px solid black; padding: 10px;">Montant</th>
-        <th style="border: 2px solid black; padding: 10px;">Mode de paiement</th>
-        <th style="border: 2px solid black; padding: 10px;">Échéance</th>
+<table>
+    <tr class="highlight">
+        <th>Montant</th>
+        <th>Mode</th>
+        <th>Échéance</th>
     </tr>
-    </thead>
-    <tbody>
     @foreach($bon->paiements as $paiement)
         <tr>
-            <td style="border: 2px solid black; padding: 10px;">{{ $paiement->montant }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $paiement->mode }}</td>
-            <td style="border: 2px solid black; padding: 10px;">{{ $paiement->echeanceAt }}</td>
+            <td>{{ number_format($paiement->montant, 2, ',', ' ') }}</td>
+            <td>{{ $paiement->mode }}</td>
+            <td>{{ $paiement->echeanceAt }}</td>
         </tr>
     @endforeach
-    </tbody>
 </table>
 
 </body>

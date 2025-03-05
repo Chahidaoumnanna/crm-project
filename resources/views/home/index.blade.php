@@ -149,7 +149,9 @@
 
     <!-- /.row -->
     <!-- /.start Statistiques -->
+
     <div class="row "> <!-- Ligne contenant les graphiques -->
+
         <!-- Première colonne pour le graphique Chart.js -->
         <div class="col-md-6">
             <div class="card mb-3">

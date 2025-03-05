@@ -47,16 +47,25 @@
         });
     </script>
 
+
     <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-primary">Ajouter un produit</h1>
-            <a href="{{ route('produits.index') }}" class="btn btn-secondary">
-                <i class="bi bi-arrow-left-circle"></i> Retour
-            </a>
-        </div>
+        <a href="{{ route('produits.index') }}" class="btn btn-danger sm mb-2">
+            <i class="bi-x "></i>
+        </a>
+
+        @if(session('success'))
+            <script>
+                toastr.success("{{ session('success') }}", "Succès", {
+                    closeButton: true,
+                    progressBar: true,
+                    positionClass: "toast-top-right",
+                    timeOut: 5000,
+                });
+            </script>
+        @endif
 
         @if($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger rounded-3 shadow-sm">
                 <ul class="mb-0">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -65,67 +74,70 @@
             </div>
         @endif
 
-        <div class="card shadow-sm rounded">
-            <div class="card-body">
-                <form action="{{ route('produits.store') }}" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Code</label>
-                            <input type="text" class="form-control" id="code" name="code">
-                            @error('code')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                            @error('name')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <label for="prixRevient" class="form-label">Prix de revient</label>
-                            <input type="number" step="0.01" class="form-control" id="prixRevient" name="prixRevient" required>
-                            @error('prixRevient')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="prixVente" class="form-label">Prix de vente</label>
-                            <input type="number" step="0.01" class="form-control" id="prixVente" name="prixVente" required>
-                            @error('prixVente')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="tva" class="form-label">TVA (%)</label>
-                            <input type="number" step="0.01" class="form-control" id="tva" name="tva" required>
-                            @error('tva')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="remise" class="form-label">Remise (%)</label>
-                            <input type="number" step="0.01" class="form-control" id="remise" name="remise" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="codeBar" class="form-label">Code-barres</label>
-                            <input type="text" class="form-control" id="codeBar" name="codeBar" autofocus>
-                            @error('codeBar')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="col-12 text-end">
-                            <button type="submit" class="btn btn-success">
-                                <i class="bi bi-cart-plus"></i> Ajouter
-                            </button>
-                        </div>
+        <div class="card shadow-lg p-4">
+            <form action="{{ route('produits.store') }}" method="POST">
+                @csrf
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Code</label>
+                        <input type="text" class="form-control rounded-3" name="code" value="{{ old('code') }}" required>
+                        @error('code')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
                     </div>
-                </form>
-            </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Nom</label>
+                        <input type="text" class="form-control rounded-3" name="name" value="{{ old('name') }}" required>
+                        @error('name')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Prix de revient</label>
+                        <input type="number" step="0.01" class="form-control rounded-3" name="prixRevient" value="{{ old('prixRevient') }}" required>
+                        @error('prixRevient')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Prix de vente</label>
+                        <input type="number" step="0.01" class="form-control rounded-3" name="prixVente" value="{{ old('prixVente') }}" required>
+                        @error('prixVente')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">TVA (%)</label>
+                        <input type="number" step="0.01" class="form-control rounded-3" name="tva" value="{{ old('tva') }}" required>
+                        @error('tva')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Remise (%)</label>
+                        <input type="number" step="0.01" class="form-control rounded-3" name="remise" value="{{ old('remise') }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Code-barres</label>
+                        <input type="text" class="form-control rounded-3" name="codeBar" value="{{ old('codeBar') }}" autofocus>
+                        @error('codeBar')
+                        <p class="text-danger small">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-sm px-4 rounded-3 shadow-sm">
+                        <i class="bi bi-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

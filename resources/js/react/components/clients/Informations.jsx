@@ -240,7 +240,7 @@ export default function Informations() {
                                                 overflow: 'hidden'
                                             }}
                                         >
-                                              Ajouter Client
+
                                         </span>
                                     </Button>
                                 </div>
