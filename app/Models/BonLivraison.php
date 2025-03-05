@@ -73,6 +73,11 @@ class BonLivraison extends Model
         $this->totale = $this->items()->sum('total');
         $this->save();
     }
+    public function nombreItems()
+    {
+        return $this->items()->count(); // Retourne le nombre d'items associés
+    }
+
 
 }
 

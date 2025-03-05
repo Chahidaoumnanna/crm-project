@@ -42,12 +42,19 @@ class BonLivraisonItem extends Model
     {
         return $this->belongsTo(BonLivraison::class, 'idBonDeLivraison');
     }
-    // Ajouter dans BonLivraisonItem.php
+
     protected static function boot()
     {
         parent::boot();
 
         static::saving(function ($item) {
+            // Récupérer le produit associé
+            $produit = Produit::find($item->idProduit);
+            if ($produit) {
+                $item->prixUnitaire = $produit->prixVente; // Met à jour le prix unitaire avec le prix de vente du produit
+            }
+
+            // Calcul du total
             $item->total = $item->qte * $item->prixUnitaire;
         });
 
@@ -58,6 +65,5 @@ class BonLivraisonItem extends Model
         static::deleted(function ($item) {
             $item->bonLivraison->recalculerTotal();
         });
-    }
-//
-}
+    }}
+

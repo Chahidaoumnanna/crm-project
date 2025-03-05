@@ -290,9 +290,13 @@ const BonLivraison = () => {
 
             alert("Bon de livraison enregistré avec succès !");
 
+            // // 4️⃣ Récupérer et afficher le PDF
+            // const id = idBonDeLivraison;
+            // axios.get('http://127.0.0.1:8000/pdf/${id}');
             // 4️⃣ Récupérer et afficher le PDF
             const id = idBonDeLivraison;
-            axios.get('http://127.0.0.1:8000/pdf/${id}');
+            window.open(`http://127.0.0.1:8000/pdf/${id}`, "_blank");
+
         } catch (error) {
             console.error("Erreur lors de l'enregistrement:", error.response?.data || error.message);
             alert("Une erreur est survenue lors de l'enregistrement.");
