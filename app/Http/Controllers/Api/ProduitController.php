@@ -235,16 +235,6 @@ class ProduitController extends Controller
         // Retourne la vue du formulaire de modification avec les données du produit
         return view('produits.edit', compact('produit'));
     }
-
-    /**
-     * Supprimer un produit.
-     */
-    /**
-     * Supprimer un produit.
-     */
-    /**
-     * Supprimer un produit.
-     */
     public function destroy($id)
     {
         // Récupère le produit à supprimer
@@ -289,22 +279,6 @@ class ProduitController extends Controller
             'prixRevient' => $validatedData['prixRevient'],
             'codeBar' => $validatedData['codeBar'],
         ]);
-
-//        $total = 0;
-//        foreach ($validatedData['products'] as $product) {
-//            $total += $product['qte'] * $product['prixUnitaire'];
-//
-//            BonLivraisonItem::create([
-//                'idProduit' => $product['idProduit'],
-//                'idBonDeLivraison' => $bonLivraison->id,
-//                'qte' => $product['qte'],
-//                'prixUnitaire' => $product['prixUnitaire'],
-//                'total' => $product['qte'] * $product['prixUnitaire'],
-//            ]);
-//        }
-//
-//        $bonLivraison->update(['totale' => $total]);
-        //
 
         return response()->json(['message' => 'Bon de livraison créé avec succès', 'data' => $produits], 201);
     }
