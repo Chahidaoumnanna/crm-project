@@ -5,15 +5,31 @@
 @section('bodyTitle', 'Produits')
 
 @section('body')
-    <div class="card mb-4">
-        <div class="card-header">
-            <h3 class="card-title">Produits</h3>
-            <div class="card-tools">
-                <a href="{{ route('produits.create') }}" class="btn btn-primary">
-                    <i class="bi bi-cart-plus"></i> Ajouter un produit
-                </a>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <a href="{{ route('produits.create') }}"
+                   class="btn btn-sm btn-primary"
+                   style="background-color: #88bde4;
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: end;
+          gap: 8px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+                   onmouseover="this.style.backgroundColor = '#003366'; this.style.transform = 'scale(1.05)';"
+                   onmouseout="this.style.backgroundColor = '#88bde4'; this.style.transform = 'scale(1)';">
+                    <i class="bi bi-person-plus style="transition: transform 0.3s;"
+                    onmouseover="this.style.transform='rotate(15deg)';"
+                    onmouseout="this.style.transform='rotate(0deg)';"></i>
+                    Ajouter un produit                </a>
             </div>
-        </div>
         <div class="card-body p-0">
             <!-- Formulaire de recherche -->
             <div class="p-3 bg-light">
